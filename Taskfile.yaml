@@ -55,6 +55,6 @@ tasks:
   configure:
     desc: Configure repository from Ansible vars
     dir: "{{.BOOTSTRAP_DIR}}"
-    cmd: ansible-playbook configure.yaml
+    cmd: "{{.VIRTUAL_ENV}}/bin/ansible-playbook configure.yaml"
     env:
       ANSIBLE_DISPLAY_SKIPPED_HOSTS: "false"
