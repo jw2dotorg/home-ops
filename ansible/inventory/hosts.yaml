@@ -1,0 +1,16 @@
+---
+kubernetes:
+  children:
+    master:
+      hosts:
+        k3s-master:
+          ansible_user: jason
+          ansible_host: 172.16.0.200
+    worker:
+      hosts:
+        k3s-worker1:
+          ansible_user: jason
+          ansible_host: 172.16.0.201
+        k3s-worker2:
+          ansible_user: jason
+          ansible_host: 172.16.0.202
