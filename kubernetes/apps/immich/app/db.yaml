@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-postgresql
+  namespace: immich
+spec:
+  instances: 1
+  storage:
+    size: 4Gi
+  imageName: ghcr.io/cloudnative-pg/postgresql:14.7
