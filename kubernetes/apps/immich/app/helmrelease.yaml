@@ -21,11 +21,11 @@ spec:
       enabled: true
 
     env:
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: database-immich-user
-            key: PASSWORD
+      #DB_PASSWORD:
+      #  valueFrom:
+      #    secretKeyRef:
+      #      name: database-immich-user
+      #      key: PASSWORD
       LOG_LEVEL: verbose
 
     redis:
