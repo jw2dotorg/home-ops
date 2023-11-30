@@ -1,0 +1,94 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: immich
+      version: 0.2.0
+      sourceRef:
+        kind: HelmRepository
+        name: immich-charts
+        namespace: flux-system
+      interval: 15m
+
+  values:
+
+    postgres:
+      enabled: false
+
+    env:
+      DB_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: database-immich-user
+            key: PASSWORD
+      LOG_LEVEL: verbose
+
+    redis:
+      enabled: true
+
+    typesense:
+      enabled: true
+      persistence:
+        tsdata:
+          enabled: true
+          storageClass: proxmox-data-csi
+      resources:
+        requests:
+          cpu: 15m
+          memory: 145M
+
+    immich:
+      persistence:
+        library:
+          existingClaim: immich-nfs
+
+    image:
+      # renovate: datasource=github-releases depName=immich-app/immich
+      tag: "v1.88.2"
+
+    server:
+      resources:
+        requests:
+          cpu: 15m
+          memory: 512M
+      ingress:
+        main:
+          enabled: true
+          ingressClassName: nginx-internal
+          annotations:
+            cert-manager.io/cluster-issuer: letsencrypt-production
+            nginx.ingress.kubernetes.io/proxy-body-size: "0"
+          hosts:
+            - host: &host "images.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *host
+              secretName: *host
+
+    microservices:
+      controller:
+        replicas: 2
+      resources:
+        requests:
+          cpu: 100m
+          memory: 250M
+
+    machine-learning:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 2048M
+      persistence:
+        cache:
+          size: 10Gi
+          type: pvc
+          accessMode: ReadWriteOnce
+          storageClass: proxmox-data-csi
