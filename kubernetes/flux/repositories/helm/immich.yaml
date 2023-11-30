@@ -2,7 +2,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: immich-charts
+  name: immich
   namespace: immich
 spec:
   interval: 1h
