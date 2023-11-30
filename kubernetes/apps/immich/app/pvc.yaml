@@ -12,7 +12,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   nfs:
     path: /saspool2/photos/immich
-    server: ${SECRET_NAS1}
+    server: ${SECRET_NFS_HOST}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
