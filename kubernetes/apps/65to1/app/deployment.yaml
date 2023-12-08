@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:                         
+    app: 65to1-site        
+  name: 65to1-site        
+  namespace: 65to1         
+spec:                                  
+  progressDeadlineSeconds: 600
+  replicas: 1     
+  revisionHistoryLimit: 10
+  selector:                 
+    matchLabels:         
+      app: 65to1-site
+  strategy:       
+    rollingUpdate:           
+      maxSurge: 25%      
+      maxUnavailable: 25% 
+    type: RollingUpdate
+  template:         
+    metadata:                          
+      creationTimestamp: null  
+      labels:                 
+        app: 65to1-site
+    spec:                                           
+      containers:                     
+      - image: bitnami/php-fpm:5.6-prod       
+        imagePullPolicy: Always                 
+        name: app                                                                                                              
+        resources: {}             
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:                         
+        - mountPath: /opt/bitnami/php/etc/conf.d
+          name: phpconfig                                  
+        - mountPath: /var/www/html                  
+          name: 65to1-nfs
+      - image: nginx:latest
+        imagePullPolicy: Always       
+        name: nginx      
+        resources: {}             
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:      
+        - mountPath: /etc/nginx/conf.d
+          name: nginxconf
+        - mountPath: /var/www/html     
+          name: 65to1-nfs
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - configMap:
+          defaultMode: 256
+          name: nginx-config
+          optional: false
+        name: nginxconf
+      - configMap:
+          defaultMode: 256
+          name: phpconfig
+          optional: false
+        name: phpconfig
+      - emptyDir: {}
+        name: shared-files
+      - name: 65to1-nfs
+        persistentVolumeClaim:
+          claimName: 65to1-nfs
