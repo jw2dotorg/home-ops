@@ -16,4 +16,4 @@ spec:
     protocol: TCP
     targetPort: 9000
   selector:
-    app: 65to1-site
+    app: www65to1-site

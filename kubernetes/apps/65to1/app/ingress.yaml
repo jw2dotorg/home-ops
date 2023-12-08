@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: 65to1-site
+            name: www65to1-site
             port:
               number: 80
         path: /
