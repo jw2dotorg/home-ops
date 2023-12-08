@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: www65to1-site
+  name: www65to1-site
+  namespace: 65to1
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    port: 9000
+    protocol: TCP
+    targetPort: 9000
+  selector:
+    app: 65to1-site
