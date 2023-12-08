@@ -5,7 +5,7 @@ resources:
   - ./namespace.yaml
   - ./mariadb-helmrelease.yaml
   - ./mariadb-pvc.yaml
-  - ./mariadb-secret.sops.yaml
+  - ./mariadb.secret.sops.yaml
   - ./pvc.yaml
   - ./configmap.yaml
   - ./ingress.yaml
