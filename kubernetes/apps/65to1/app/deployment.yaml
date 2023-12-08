@@ -1,50 +1,50 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:                         
-    app: www65to1-site        
-  name: www65to1-site        
-  namespace: 65to1         
-spec:                                  
+  labels:
+    app: www65to1-site
+  name: www65to1-site
+  namespace: 65to1
+spec:
   progressDeadlineSeconds: 600
-  replicas: 1     
+  replicas: 1
   revisionHistoryLimit: 10
-  selector:                 
-    matchLabels:         
+  selector:
+    matchLabels:
       app: www65to1-site
-  strategy:       
-    rollingUpdate:           
-      maxSurge: 25%      
-      maxUnavailable: 25% 
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
     type: RollingUpdate
-  template:         
-    metadata:                          
-      creationTimestamp: null  
-      labels:                 
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
         app: www65to1-site
-    spec:                                           
-      containers:                     
-      - image: bitnami/php-fpm:5.6-prod       
-        imagePullPolicy: Always                 
-        name: app                                                                                                              
-        resources: {}             
+    spec:
+      containers:
+      - image: bitnami/php-fpm:5.6-prod
+        imagePullPolicy: Always
+        name: app
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        volumeMounts:                         
+        volumeMounts:
         - mountPath: /opt/bitnami/php/etc/conf.d
-          name: phpconfig                                  
-        - mountPath: /var/www/html                  
+          name: phpconfig
+        - mountPath: /var/www/html/65to1
           name: 65to1-nfs
       - image: nginx:latest
-        imagePullPolicy: Always       
-        name: nginx      
-        resources: {}             
+        imagePullPolicy: Always
+        name: nginx
+        resources: {}
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-        volumeMounts:      
+        volumeMounts:
         - mountPath: /etc/nginx/conf.d
           name: nginxconf
-        - mountPath: /var/www/html     
+        - mountPath: /var/www/html/65to1
           name: 65to1-nfs
       dnsPolicy: ClusterFirst
       restartPolicy: Always
