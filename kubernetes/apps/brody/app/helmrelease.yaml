@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: brody
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: wordpress
+      version: 15.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+      interval: 5m
+  values:
+    ingress:
+      enabled: true
+      ingressClasName: internal
+      hostname: brodywhite.org
+    wordpressPassord: "${BRODY_WP_PASS}"
