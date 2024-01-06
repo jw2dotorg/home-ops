@@ -1,0 +1,357 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: frigate
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: app-template
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+      interval: 5m
+  dependsOn:
+    - name: mosquitto
+  values:
+    env:
+      TZ: America/New_York
+    image:
+      repository: ghcr.io/blakeblackshear/frigate
+      tag: 0.12.1
+    service:
+      main:
+        ports:
+          http:
+            port: &port 5000
+          rtsp:
+            enabled: true
+            port: 8554
+    probes:
+      #liveness: &probes
+      #  enabled: true
+      #  custom: true
+      #  spec:
+      #    httpGet:
+      #      path: /api/version
+      #      port: *port
+      #    initialDelaySeconds: 0
+      #    periodSeconds: 10
+      #    timeoutSeconds: 1
+      #    failureThreshold: 3
+      #readiness: *probes
+      startup:
+        enabled: false
+      readiness:
+        enabled: false
+      liveness:
+        enabled: false
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: internal
+        annotations:
+          cert-manager.io/cluster-issuer: "letsencrypt-production"
+        hosts:
+          - host: "frigate.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "frigate.${SECRET_DOMAIN}"
+            secretName: frigate-tls
+    securityContext:
+      privileged: true
+    persistence:
+      data:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "172.16.0.11"
+            path: /saspool1/frigate
+      config:
+        enabled: true
+        type: configMap
+        name: frigate-config
+        subPath: config.yml
+        mountPath: /config/config.yml
+        readOnly: true
+      media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "172.16.0.11"
+            path: /saspool1/frigate
+        mountPath: /media
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/bus/usb
+      cache:
+        enabled: true
+        type: emptyDir
+        medium: Memory
+        sizeLimit: 2Gi
+        mountPath: /dev/shm
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "frigate-config"
+    # affinity:
+    #   nodeAffinity:
+    #     requiredDuringSchedulingIgnoredDuringExecution:
+    #       nodeSelectorTerms:
+    #         - matchExpressions:
+    #             - key: feature.node.kubernetes.io/custom-coral-tpu
+    #               operator: In
+    #               values:
+    #                 - "true"
+
+    resources:
+      requests:
+        gpu.intel.com/i915: 1
+        memory: 500Mi
+        cpu: 1000m
+      limits:
+        gpu.intel.com/i915: 1
+        memory: 3000Mi
+
+    configMaps:
+      config:
+        enabled: true
+        data:
+          config.yml: |
+            mqtt:
+              host: mosquitto
+              topic_prefix: frigate
+              user: ${SECRET_MQTT_USERNAME}
+              password: ${SECRET_MQTT_PASSWORD}
+
+            database:
+              path: /data/frigate-new.db
+
+            ui:
+              use_experimental: false
+
+            detectors:
+              coral:
+                type: edgetpu
+                device: usb
+
+            objects:
+              track:
+                - person
+                - dog
+                - cat
+                - car
+                - bicycle
+
+            birdseye:
+              mode: objects
+              quality: 1
+
+            live:
+              quality: 1
+
+            ffmpeg:
+              hwaccel_args:
+                - -hwaccel
+                - vaapi
+                - -hwaccel_device
+                - /dev/dri/renderD128
+                - -hwaccel_output_format
+                - yuv420p
+              output_args:
+                record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
+
+            detect:
+              width: 1280
+              height: 720
+              fps: 5
+
+            record:
+              enabled: True
+              retain:
+                days: 5
+                #days: 30
+                #mode: motion
+                mode: all
+              events:
+                retain:
+                  default: 5
+                  #default: 30
+                  #mode: motion
+                  mode: all
+
+            snapshots:
+              enabled: True
+              timestamp: False
+              retain:
+                default: 30
+
+            go2rtc:
+              streams:
+                doorbell:
+                  - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-doorbell.jw2.org/
+                doorbell-back:
+                  - rtsp://admin:${FRIGATE_DOORBELL_PASSWORD}@doorbell.jw2.org/
+
+            cameras:
+              garage:
+                ui: 
+                  order: 6
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-garage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                      roles:
+                        - detect
+                        - rtmp
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-garage.${SECRET_DOMAIN}/live
+                      roles:
+                        - record
+                objects:
+                  track:
+                    - person
+                    - dog
+                    - cat
+                    - bicycle
+                motion:
+                  mask:
+                    - 1033,153,1061,169,1067,133,1041,123
+              backyard:
+                ui: 
+                  order: 5
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-backyard.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                      roles:
+                        - detect
+                        - rtmp
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-backyard.${SECRET_DOMAIN}/live
+                      roles:
+                        - record
+              driveway:
+                ui: 
+                  order: 2
+                ffmpeg:
+                 inputs:
+                   - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-driveway.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                     roles:
+                       - detect
+                       - rtmp
+                   - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-driveway.${SECRET_DOMAIN}/live
+                     roles:
+                       - record
+              porch:
+                ui: 
+                  order: 4
+                ffmpeg:
+                 inputs:
+                   - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-porch.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                     roles:
+                       - detect
+                       - rtmp
+                   - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-porch.${SECRET_DOMAIN}/live
+                     roles:
+                       - record
+              front:
+                ui: 
+                  order: 3
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-front.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                      roles:
+                        - detect
+                        - rtmp
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-front.${SECRET_DOMAIN}/live
+                      roles:
+                        - record
+              side-garage:
+                ui: 
+                  order: 1
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2
+                      roles:
+                        - detect
+                        - rtmp
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/live
+                      roles:
+                        - record
+                detect:
+                  width: 2688
+                  height: 1520
+                record:
+                  width: 2688
+                  height: 1520
+                zones:
+                  neighbors_driveway:
+                    coordinates: 0,0,0,424,719,0
+                    objects:  # everything but cars
+                      - person
+                      - dog
+                      - cat
+                      - bicycle
+                  my_driveway:
+                    coordinates: 716,0,1280,0,971,720,0,720,0,422
+                motion:
+                  mask:
+                    - 662,377,668,720,528,720,564,374
+                objects:
+                  filters:
+                    dog:
+                      mask:
+                        - 662,377,668,720,528,720,564,374
+                    person:
+                      mask:
+                        - 662,377,668,720,528,720,564,374
+              doorbell-back:
+                ui: 
+                  order: 7
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://admin:${FRIGATE_DOORBELL_PASSWORD}@doorbell.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=1
+                      roles:
+                        - detect
+                    - path: rtsp://admin:${FRIGATE_DOORBELL_PASSWORD}@doorbell.${SECRET_DOMAIN}/
+                      roles:
+                        - record
+                        - rtmp
+                detect:
+                  width: 720
+                  height: 576
+                  fps: 10
+                objects:
+                  track:
+                    - person
+                    - dog
+                    - cat
+                    - bicycle
+              doorbell:
+                ui: 
+                  order: 8
+                ffmpeg:
+                  inputs:
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-doorbell.${SECRET_DOMAIN}/h264Preview_01_sub
+                      roles:
+                        - detect
+                    - path: rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-doorbell.${SECRET_DOMAIN}/h264Preview_01_main
+                      roles:
+                        - record
+                        - rtmp
+                detect:
+                  width: 640
+                  height: 480
+                  fps: 10
+                objects:
+                  track:
+                    - person
+                    - dog
+                    - cat
+                    - bicycle
