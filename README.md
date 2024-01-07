@@ -1,165 +1,24 @@
-# Deploy a Kubernetes cluster backed by Flux
-
-Welcome to my highly opinionated template for deploying a single Kubernetes ([k3s](https://k3s.io)) cluster with [Ansible](https://www.ansible.com) and using [Flux](https://toolkit.fluxcd.io) to manage its state.
-
-## 👋 Introduction
-
-The goal of this project is to make it easy for people interested in learning Kubernetes to deploy a basic cluster at home and become familiar with the GitOps tool Flux.
-
-This template implements Flux in a way that promotes legibility and ease of use for those who are new (or relatively new) to the technology and GitOps in general. It assumes a typical homelab setup: namely, a single "home prod" cluster running mostly third-party apps.
-
-## ✨ Features
-
-- Automated, reproducible, customizable setup through Ansible templates and playbooks
-- Opinionated implementation of Flux with [strong community support](https://github.com/onedr0p/flux-cluster-template#-support)
-- Encrypted secrets thanks to [SOPS](https://github.com/getsops/sops) and [Age](https://github.com/FiloSottile/age)
-- Web application firewall thanks to [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps)
-- SSL certificates thanks to [Cloudflare](https://cloudflare.com) and [cert-manager](https://cert-manager.io)
-- HA control plane capability thanks to [kube-vip](https://kube-vip.io)
-- Next-gen networking thanks to [Cilium](https://cilium.io/)
-- A [Renovate](https://www.mend.io/renovate)-ready repository
-- Integrated [GitHub Actions](https://github.com/features/actions)
-
-... and more!
-
-## 📝 Pre-start checklist
-
-Before we get started everything below must be taken into consideration, you must...
-
-- [ ] have some experience with 3 of the following: Git/SCM, containers, networking or scripting.
-- [ ] bring a **positive attitude** and be ready to learn and fail a lot. _The more you fail, the more you can learn from._
-- [ ] run the cluster on bare metal machines or VMs within your home network &mdash; **this is NOT designed for cloud environments**.
-- [ ] have Debian 12 freshly installed on 1 or more AMD64/ARM64 bare metal machines or VMs. Each machine will be either a **control node** or a **worker node** in your cluster.
-- [ ] give your nodes unrestricted internet access &mdash; **air-gapped environments won't work**.
-- [ ] have a domain you can manage on Cloudflare.
-- [ ] be willing to commit encrypted secrets to a public GitHub repository.
-- [ ] have a DNS server that supports split DNS (e.g. Pi-Hole) deployed somewhere outside your cluster **ON** your home network.
+# Home Operations
 
 ## 💻 Machine Preparation
 
 ### System requirements
 
-📍 _k3s default behaviour is that all nodes are able to run workloads, including contol nodes. Worker nodes are therefore optional._
-
-📍 _If you have 3 or more nodes it is strongly recommended to make 3 of them control nodes for a highly available control plane._
-
-📍 _Ideally you will run the cluster on bare metal machines. If you intend to run your cluster on Proxmox VE, my thoughts and recommendations about that are documented [here](https://onedr0p.github.io/home-ops/notes/proxmox-considerations.html)._
-
-| Role    | Cores    | Memory        | System Disk               |
-|---------|----------|---------------|---------------------------|
-| Control | 4 _(6*)_ | 8GB _(24GB*)_ | 100GB _(500GB*)_ SSD/NVMe |
-| Worker  | 4 _(6*)_ | 8GB _(24GB*)_ | 100GB _(500GB*)_ SSD/NVMe |
-| _\* recommended_ |
-
-### Debian for AMD64
-
-1. Download the latest stable release of Debian from [here](https://cdimage.debian.org/debian-cd/current/amd64/iso-dvd), then follow [this guide](https://www.linuxtechi.com/how-to-install-debian-12-step-by-step) to get it installed. Deviations from the guide:
-
-    ```txt
-    Choose "Guided - use entire disk"
-    Choose "All files in one partition"
-    Delete Swap partition
-    Uncheck all Debian desktop environment options
-    ```
-
-2. [Post install] Remove CD/DVD as apt source
-
-    ```sh
-    su -
-    sed -i '/deb cdrom/d' /etc/apt/sources.list
-    apt update
-    exit
-    ```
-
-3. [Post install] Enable sudo for your non-root user
-
-    ```sh
-    su -
-    apt update
-    apt install -y sudo
-    usermod -aG sudo ${username}
-    echo "${username} ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/${username}
-    exit
-    newgrp sudo
-    sudo apt update
-    ```
-
-4. [Post install] Add SSH keys (or use `ssh-copy-id` on the client that is connecting)
-
-    📍 _First make sure your ssh keys are up-to-date and added to your github account as [instructed](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)._
-
-    ```sh
-    mkdir -m 700 ~/.ssh
-    sudo apt install -y curl
-    curl https://github.com/${github_username}.keys > ~/.ssh/authorized_keys
-    chmod 600 ~/.ssh/authorized_keys
-    ```
-
-### Debian for RasPi4
-
-📍 _If you choose to use a Raspberry Pi 4 for the cluster, it is recommended to have an 8GB model. Most important is to **boot from an external SSD/NVMe** rather than an SD card. This is supported [natively](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html), however if you have an early model you may need to [update the bootloader](https://www.tomshardware.com/how-to/boot-raspberry-pi-4-usb) first._
-
-📍 _Be sure to check the [power requirements](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply) if using a PoE Hat and a SSD/NVMe dongle._
-
-1. Download the latest stable release of Debian from [here](https://raspi.debian.net/tested-images). _**Do not** use Raspbian or DietPi or any other flavor Linux OS._
-
-2. Flash the image onto an SSD/NVMe drive.
-
-3. Re-mount the drive to your workstation and then do the following (per the [official documentation](https://raspi.debian.net/defaults-and-settings)):
-
-    ```txt
-    Open 'sysconf.txt' in a text editor and save it upon updating the information below
-      - Change 'root_authorized_key' to your desired public SSH key
-      - Change 'root_pw' to your desired root password
-      - Change 'hostname' to your desired hostname
-    ```
-
-4. Connect SSD/NVMe drive to the Raspberry Pi 4 and power it on.
-
-5. [Post install] SSH into the device with the `root` user and then create a normal user account with `adduser ${username}`
-
-6. [Post install] Follow steps 3 and 4 from [Debian for AMD64](#debian-for-amd64).
-
-7. [Post install] Install `python3` which is needed by Ansible.
-
-    ```sh
-    sudo apt install -y python3
-    ```
+- Debian 12 nodes built by Terraform
+  - 1 master
+  - 2 workers
 
 ## 🚀 Getting Started
 
 Once you have installed Debian on your nodes, there are six stages to getting a Flux-managed cluster up and runnning.
 
-📍 _For all stages below the commands **MUST** be ran on your personal workstation within your repository directory_
+### 🌱 Setup workstation environment
 
-### 🎉 Stage 1: Create a Git repository
-
-1. Create a new **public** repository by clicking the big green "Use this template" button at the top of this page.
-
-2. Clone **your new repo** to you local workstation and `cd` into it.
-
-### 🌱 Stage 2: Setup your local workstation environment
-
-📍 _Let's get the required workstation tools installed and configured._
 
 1. Install the most recent version of [task](https://taskfile.dev/)
 
-    📍 _See the task [installation docs](https://taskfile.dev/installation/) for other platforms_
-
     ```sh
-    # Brew
-    brew install go-task
-    ```
-
-2. Install the most recent version of [direnv](https://direnv.net/)
-
-    📍 _See the direnv [installation docs](https://direnv.net/docs/installation.html) for other platforms_
-
-    📍 _After installing `direnv` be sure to [hook it into your shell](https://direnv.net/docs/hook.html) and after that is done run `direnv allow` while in your repos directory._
-
-    ```sh
-    # Brew
-    brew install direnv
+    sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
     ```
 
 3. Setup a Python virual env and install Ansible by running the following task command.
@@ -173,14 +32,7 @@ Once you have installed Debian on your nodes, there are six stages to getting a 
 
 4. Install the required tools: [age](https://github.com/FiloSottile/age), [flux](https://toolkit.fluxcd.io/), [cloudflared](https://github.com/cloudflare/cloudflared), [kubectl](https://kubernetes.io/docs/tasks/tools/), [sops](https://github.com/getsops/sops)
 
-   ```sh
-   # Brew
-   task brew:deps
-   ```
-
 ### 🔧 Stage 3: Do bootstrap configuration
-
-📍 _Both `bootstrap/vars/config.yaml` and `bootstrap/vars/addons.yaml` files contain necessary information that is needed by bootstrap process._
 
 1. Generate the `bootstrap/vars/config.yaml` and `bootstrap/vars/addons.yaml` configuration files.
 
@@ -198,52 +50,13 @@ Once you have installed Debian on your nodes, there are six stages to getting a 
       age-keygen -o age.key
       ```
 
-    2b. Fill out the appropriate vars in `bootstrap/vars/config.yaml`
+    2b. Fill out the `age` vars in `bootstrap/vars/config.yaml`
 
 3. Create Cloudflare API Token
 
-    📍 _To use `cert-manager` with the Cloudflare DNS challenge you will need to create a API Token._
+    Fill out the appropriate vars in `bootstrap/vars/config.yaml`
 
-   3a. Head over to Cloudflare and create a API Token by going [here](https://dash.cloudflare.com/profile/api-tokens).
-
-   3b. Under the `API Tokens` section click the blue `Create Token` button.
-
-   3c. Click the blue `Use template` button for the `Edit zone DNS` template.
-
-   3d. Name your token something like `home-kubernetes`
-
-   3e. Under `Permissions`, click `+ Add More` and add each permission below:
-
-    ```text
-    Zone - DNS - Edit
-    Account - Cloudflare Tunnel - Read
-    ```
-
-   3f. Limit the permissions to a specific account and zone resources.
-
-   3g. Fill out the appropriate vars in `bootstrap/vars/config.yaml`
-
-4. Create Cloudflare Tunnel
-
-    📍 _To expose services to the internet you will need to create a [Cloudflare Tunnel](https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/)._
-
-    4a. Authenticate cloudflared to your domain
-
-      ```sh
-      cloudflared tunnel login
-      ```
-
-    4b. Create the tunnel
-
-      ```sh
-      cloudflared tunnel create k8s
-      ```
-
-    4c. In the `~/.cloudflared` directory there will be a json file with details you need. Ignore the `cert.pem` file.
-
-    4d. Fill out the appropriate vars in `bootstrap/vars/config.yaml`
-
-5. Complete filling out the rest of the `bootstrap/vars/config.yaml` configuration file.
+4. Complete filling out the rest of the `bootstrap/vars/config.yaml` configuration file.
 
     5a. Ensure `bootstrap_acme_production_enabled` is set to `false`.
 
