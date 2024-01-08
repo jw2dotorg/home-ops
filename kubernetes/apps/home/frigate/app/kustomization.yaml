@@ -4,3 +4,11 @@ kind: Kustomization
 resources:
   - ./helmrelease.yaml
   - ./config-pvc.yaml
+configMapGenerator:
+  - name: frigate-configmap
+    files:
+      - config.yml=./config/config.yml
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
