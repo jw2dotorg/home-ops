@@ -81,7 +81,6 @@ spec:
             - name: config
               accessMode: ReadWriteOnce
               size: 1Gi
-              storageClass: rook-ceph-block
               globalMounts:
                 - path: /config
     service:
