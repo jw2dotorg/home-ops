@@ -26,17 +26,6 @@ spec:
     redis:
       enabled: true
 
-    typesense:
-      enabled: true
-      persistence:
-        tsdata:
-          enabled: true
-          storageClass: proxmox-data-csi
-      resources:
-        requests:
-          cpu: 15m
-          memory: 145M
-
     immich:
       persistence:
         library:
