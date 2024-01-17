@@ -20,7 +20,7 @@ spec:
     postgresql:
       enabled: true
       image:
-        registry: ghrc.io
+        registry: ghcr.io
         repository: bo0tzz/cnpgvecto.rs
         tag: 14.10-v0.1.11
 
