@@ -4,11 +4,11 @@ kind: Kustomization
 metadata:
   name: &app zwave-js-ui
   namespace: flux-system
+spec:
   targetNamespace: default
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-spec:
   path: ./kubernetes/apps/default/zwave-js-ui/app
   prune: true
   sourceRef:
