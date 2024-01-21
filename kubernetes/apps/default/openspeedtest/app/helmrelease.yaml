@@ -40,7 +40,7 @@ spec:
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: 10240m
           nginx.ingress.kubernetes.io/ssl-redirect: 'true'
-        className: nginx
+        className: internal
         enabled: true
         hosts:
           - host: &host '{{ .Release.Name }}.${SECRET_DOMAIN}'
