@@ -6,3 +6,4 @@ resources:
   - ./zigbee2mqtt/ks.yaml
   - ./zwave-js-ui/ks.yaml
   - ./esphome/ks.yaml
+  - ./openspeedtest/ks.yaml
