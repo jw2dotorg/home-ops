@@ -22,7 +22,7 @@ spec:
       image:
         registry: ghcr.io
         repository: bo0tzz/cnpgvecto.rs
-        tag: 14.10-v0.1.11
+        tag: 16.1-v0.1.11
 
     env:
       LOG_LEVEL: verbose
