@@ -21,8 +21,8 @@ spec:
       enabled: true
       image:
         registry: ghcr.io
-        repository: bo0tzz/cnpgvecto.rs
-        tag: 16.1-v0.1.11
+        repository: tensorchord/cloudnative-pgvecto.rs
+        tag: 14
 
     env:
       LOG_LEVEL: verbose
