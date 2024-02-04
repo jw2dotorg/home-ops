@@ -23,7 +23,7 @@ spec:
         registry: ghcr.io
         #repository: bo0tzz/cnpgvecto.rs
         repository: tensorchord/cloudnative-pgvecto.rs
-        #tag: 14.10-v0.1.13
+        tag: 14.10-v0.1.13
 
     env:
       LOG_LEVEL: verbose
