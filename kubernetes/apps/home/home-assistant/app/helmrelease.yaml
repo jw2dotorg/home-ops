@@ -31,7 +31,7 @@ spec:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-       nodeSelector:
+        nodeSelector:
           kubernetes.io/hostname: k3s-worker1
         containers:
           main:
