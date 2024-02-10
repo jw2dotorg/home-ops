@@ -65,3 +65,4 @@ spec:
         existingClaim: smokeping-config-v1
       data:
         enabled: true
+        accessMode: ReadWriteOnce
