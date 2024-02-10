@@ -6,3 +6,4 @@ resources:
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./smokeping/ks.yaml
+  - ./snmp-exporter/ks.yaml
