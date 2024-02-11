@@ -55,8 +55,6 @@ spec:
       main:
         ports:
           http:
-            port: *port
-          websocket:
             port: 3000
     ingress:
       main:
