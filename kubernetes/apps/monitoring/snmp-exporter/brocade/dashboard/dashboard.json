@@ -34,7 +34,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -98,7 +98,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "sysUpTime{job=\"$Job\"} * 10",
           "legendFormat": "In",
@@ -111,7 +111,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -176,7 +176,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "max(irate(ifHCOutOctets{job=\"$Job\"}[5m]))",
           "instant": false,
@@ -190,7 +190,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -254,7 +254,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "max(irate(ifHCInOctets{job=\"$Job\"}[5m]))",
           "legendFormat": "In",
@@ -267,7 +267,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -331,7 +331,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "max(delta(ifHCOutOctets{job=\"$Job\"}[$__range]))",
           "legendFormat": "Out",
@@ -344,7 +344,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -408,7 +408,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "max(delta(ifHCInOctets{job=\"$Job\"}[$__range]))",
           "instant": false,
@@ -423,7 +423,7 @@
       "columns": [],
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fontSize": "100%",
       "gridPos": {
@@ -578,7 +578,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
           "format": "table",
@@ -589,7 +589,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "irate(ifHCInOctets{job=\"$Job\"}[5m])",
           "format": "table",
@@ -600,7 +600,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "delta(ifHCOutOctets{job=\"$Job\"}[$__range])",
           "format": "table",
@@ -611,7 +611,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "delta(ifHCInOctets{job=\"$Job\"}[$__range])",
           "format": "table",
@@ -622,7 +622,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "ifHighSpeed{job=\"$Job\"}",
           "format": "table",
@@ -638,7 +638,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "Max: 10MB  \nRed Status: 9MB",
       "fieldConfig": {
@@ -693,7 +693,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
           "intervalFactor": 1,
@@ -707,7 +707,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "description": "Max: 10MB  \nRed Status: 9MB",
       "fieldConfig": {
@@ -762,7 +762,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
           "intervalFactor": 1,
@@ -780,7 +780,7 @@
       "dashes": false,
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -830,7 +830,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "irate(ifHCOutOctets{job=\"$Job\"}[5m])",
           "instant": false,
@@ -841,7 +841,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "prometheus"
           },
           "expr": "-irate(ifHCInOctets{job=\"$Job\"}[5m])",
           "intervalFactor": 1,
@@ -897,7 +897,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "definition": "label_values(ifHCInOctets,  job)",
         "hide": 0,
@@ -921,7 +921,7 @@
       {
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "prometheus"
         },
         "filters": [],
         "hide": 0,
