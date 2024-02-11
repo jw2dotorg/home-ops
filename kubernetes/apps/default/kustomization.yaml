@@ -7,3 +7,4 @@ resources:
   - ./zwave-js-ui/ks.yaml
   - ./esphome/ks.yaml
   - ./openspeedtest/ks.yaml
+  - ./silverbullet/ks.yaml
