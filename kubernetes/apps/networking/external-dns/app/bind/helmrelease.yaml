@@ -38,7 +38,7 @@ spec:
               EXTERNAL_DNS_RFC2136_PORT: "53"
               EXTERNAL_DNS_RFC2136_ZONE: ${SECRET_DOMAIN}
               EXTERNAL_DNS_RFC2136_TSIG_AXFR: "true"
-              EXTERNAL_DNS_RFC2136_TSIG_KEYNAME: kubernetes-main-key
+              EXTERNAL_DNS_RFC2136_TSIG_KEYNAME: externaldns
               EXTERNAL_DNS_RFC2136_TSIG_SECRET_ALG: hmac-sha256
             envFrom:
               - secretRef:
