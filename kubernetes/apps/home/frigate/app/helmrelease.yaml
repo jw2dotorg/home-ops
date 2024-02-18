@@ -34,6 +34,7 @@ spec:
         pod:
           nodeSelector:
             passthrough: tpu_gpu
+            kubernetes.io/hostname: k3s-worker1
         containers:
           main:
             image:

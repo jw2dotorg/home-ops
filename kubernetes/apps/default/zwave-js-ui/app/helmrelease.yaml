@@ -26,13 +26,14 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    defaultPodOptions:
+      nodeSelector:
+        kubernetes.io/hostname: k3s-worker1
     controllers:
       main:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
-        nodeSelector:
-          kubernetes.io/hostname: k3s-worker1
         containers:
           main:
             image:
