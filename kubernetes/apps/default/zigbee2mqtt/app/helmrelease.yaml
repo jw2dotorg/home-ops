@@ -69,10 +69,6 @@ spec:
               ZIGBEE2MQTT_CONFIG_MQTT_USER: "${SECRET_MQTT_USERNAME}"
               ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD: "${SECRET_MQTT_PASSWORD}"
               ZIGBEE2MQTT_CONFIG_PERMIT_JOIN: "false"
-
-              #ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: deconz
-              #ZIGBEE2MQTT_CONFIG_SERIAL_PORT: &usb /dev/ttyACM0
-
               ZIGBEE2MQTT_CONFIG_SERIAL_ADAPTER: ezsp
               ZIGBEE2MQTT_CONFIG_SERIAL_PORT: tcp://10.0.20.66:6638
               ZIGBEE2MQTT_CONFIG_SERIAL_BAUDRATE: 115200
@@ -118,10 +114,6 @@ spec:
           - hosts:
               - *host
     persistence:
-      usb:
+      config:
         enabled: true
-        type: hostPath
-        hostPath: *usb
-        hostPathType: CharDevice
-        globalMounts:
-          - path: *usb
+        existingClaim: zigbee2mqtt-config-0
