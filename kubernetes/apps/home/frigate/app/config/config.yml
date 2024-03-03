@@ -10,10 +10,10 @@ database:
 ui:
   use_experimental: false
 
-#detectors:
-#  coral:
-#    type: edgetpu
-#    device: usb
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
 
 objects:
   track:
