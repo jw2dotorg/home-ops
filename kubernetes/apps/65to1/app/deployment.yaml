@@ -24,7 +24,7 @@ spec:
         app: www65to1-site
     spec:
       containers:
-      - image: bitnami/php-fpm:5.6-prod
+      - image: bitnami/php-fpm:8.1-prod
         imagePullPolicy: Always
         name: app
         resources: {}
