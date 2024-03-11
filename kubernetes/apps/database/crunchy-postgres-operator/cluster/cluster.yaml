@@ -25,6 +25,16 @@ spec:
               labelSelector:
                 matchLabels:
                   postgres-operator.crunchydata.com/cluster: postgres
+  backups:
+    pgbackrest:
+      repos:
+      - name: backup-config
+        volume:
+          volumeClaimSpec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 1Gi
   users:
     - name: "postgres"
       databases: []
@@ -37,7 +47,7 @@ spec:
         metadata:
           annotations:
             external-dns.alpha.kubernetes.io/hostname: cpgo.${SECRET_DOMAIN}
-            io.cilium/lb-ipam-ips: ${SVC_CPGO_ADDR}
+            io.cilium/lb-ipam-ips: "172.16.0.213"
         type: LoadBalancer
       port: 5432
       replicas: *replica
