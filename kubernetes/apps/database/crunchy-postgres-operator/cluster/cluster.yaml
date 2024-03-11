@@ -28,7 +28,7 @@ spec:
   backups:
     pgbackrest:
       repos:
-      - name: backup-config
+      - name: repo1
         volume:
           volumeClaimSpec:
             accessModes: ["ReadWriteOnce"]
