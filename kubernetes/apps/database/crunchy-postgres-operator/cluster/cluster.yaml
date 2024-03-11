@@ -1,0 +1,51 @@
+---
+apiVersion: postgres-operator.crunchydata.com/v1beta1
+kind: PostgresCluster
+metadata:
+  name: &name postgres
+spec:
+  postgresVersion: 16
+  instances:
+    - name: postgres
+      metadata:
+        labels:
+          app.kubernetes.io/name: crunchy-postgres
+      replicas: &replica 2
+      dataVolumeClaimSpec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 20Gi
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              topologyKey: kubernetes.io/hostname
+              labelSelector:
+                matchLabels:
+                  postgres-operator.crunchydata.com/cluster: postgres
+  users:
+    - name: "postgres"
+      databases: []
+      options: "SUPERUSER"
+      password:
+        type: AlphaNumeric
+  proxy:
+    pgBouncer:
+      service:
+        metadata:
+          annotations:
+            external-dns.alpha.kubernetes.io/hostname: cpgo.${SECRET_DOMAIN}
+            io.cilium/lb-ipam-ips: ${SVC_CPGO_ADDR}
+        type: LoadBalancer
+      port: 5432
+      replicas: *replica
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: kubernetes.io/hostname
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              postgres-operator.crunchydata.com/cluster: *name
+              postgres-operator.crunchydata.com/role: pgbouncer
