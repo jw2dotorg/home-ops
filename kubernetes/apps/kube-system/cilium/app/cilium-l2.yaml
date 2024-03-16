@@ -19,4 +19,5 @@ metadata:
   name: pool
 spec:
   cidrs:
-    - cidr: "${NODE_CIDR}"
+    - start: "172.16.0.210"
+    - stop: "172.16.0.219"
