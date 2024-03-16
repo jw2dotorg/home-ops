@@ -79,8 +79,6 @@ spec:
       main:
         enabled: true
         ingressClassName: internal
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: "frigate.${SECRET_DOMAIN}"
             paths:
@@ -88,10 +86,6 @@ spec:
                 service:
                   name: main
                   port: http
-        tls:
-          - hosts:
-              - "frigate.${SECRET_DOMAIN}"
-            secretName: frigate-tls
 
     securityContext:
       privileged: true
