@@ -13,7 +13,7 @@ spec:
     - name: crunchy-postgres-operator-cluster
     - name: crunchy-postgres-operator-clustersecretstore
     - name: external-secrets-bitwarden-secrets-manager
-  path: ./kubernetes/main/apps/media/sonarr/app
+  path: ./kubernetes/main/media/sonarr/app
   prune: true
   sourceRef:
     kind: GitRepository
