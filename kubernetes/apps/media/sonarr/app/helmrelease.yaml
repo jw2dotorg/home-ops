@@ -127,7 +127,7 @@ spec:
         type: emptyDir
       data:
         type: nfs
-        server: nas.${SECRET_DOMAIN}
-        path: /media
+        server: prox.${SECRET_DOMAIN}
+        path: /saspool3/media
         globalMounts:
           - path: /data
