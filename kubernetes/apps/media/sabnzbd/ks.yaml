@@ -9,7 +9,7 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  path: ./kubernetes/main/apps/media/sabnzbd/app
+  path: ./kubernetes/apps/media/sabnzbd/app
   prune: true
   sourceRef:
     kind: GitRepository
