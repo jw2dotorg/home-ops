@@ -37,7 +37,7 @@ spec:
           existingClaim: immich-nfs
 
     image:
-      tag: "v1.92.1"
+      tag: "v1.100.0"
 
     server:
       resources:
