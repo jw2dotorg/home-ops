@@ -23,7 +23,7 @@ metadata:
 spec:
   dependsOn:
     - name: cloudnative-pg
-    - name: external-secrets-bitwarden
+    - name: external-secrets-bitwarden-secrets-manager
   path: ./kubernetes/apps/database/cloudnative-pg/cluster
   prune: true
   sourceRef:
