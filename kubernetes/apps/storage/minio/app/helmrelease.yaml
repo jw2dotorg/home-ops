@@ -64,9 +64,6 @@ spec:
               readiness: *probes
               startup:
                 enabled: false
-            securityContext:
-              privileged: true
-              runAsUser: 99
             resources:
               requests:
                 memory: 100Mi
