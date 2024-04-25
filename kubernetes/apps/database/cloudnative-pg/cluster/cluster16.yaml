@@ -32,11 +32,11 @@ spec:
       serverName: &currentCluster postgres16-v6
       s3Credentials:
         accessKeyId:
-          name: cloudnative-pg-secret
-          key: aws-access-key-id
+          name: minio-pgsql
+          key: minio_s3_access_key
         secretAccessKey:
-          name: cloudnative-pg-secret
-          key: aws-secret-access-key
+          name: minio-pgsql
+          key: minio_s3_secret_access_key
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   bootstrap:
