@@ -11,7 +11,7 @@ spec:
     size: 20Gi
     storageClass: local-path
   superuserSecret:
-    name: cloudnative-pg-secret
+    name: postgres-superuser
   enableSuperuserAccess: true
   postgresql:
     parameters:
