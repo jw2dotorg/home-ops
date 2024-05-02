@@ -6,7 +6,7 @@ resources:
   - helmrelease.yaml
 configMapGenerator:
   - name: snmp-exporter-brocade
-    file:
+    files:
       - snmp.yaml=./snmp.yaml
 generatorOptions:
   disableNameSuffixHash: true
