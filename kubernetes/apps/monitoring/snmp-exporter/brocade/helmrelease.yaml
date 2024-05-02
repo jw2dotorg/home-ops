@@ -27,7 +27,7 @@ spec:
     extraArgs:
       - "--config.file=/config/snmp.yaml"
     extraConfigmapMounts:
-      - name: *app
+      - name: *app brocade-snmp-configmap
         mountPath: /config/snmp.yaml
         subPath: snmp.yaml
         configMap: *app
@@ -38,8 +38,7 @@ spec:
       namespace: monitoring
       params:
         - name: brocade
-          module:
-            - [brocade]
+          module: ["brocade"]
           target: "brocade.${SECRET_DOMAIN}"
       path: /snmp
       scrapeTimeout: 10s
