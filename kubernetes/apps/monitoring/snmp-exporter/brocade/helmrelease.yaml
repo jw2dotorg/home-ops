@@ -27,7 +27,7 @@ spec:
     extraArgs:
       - "--config.file=/config/snmp.yaml"
     extraConfigmapMounts:
-      - name: *app brocade-snmp-configmap
+      - name: *app
         mountPath: /config/snmp.yaml
         subPath: snmp.yaml
         configMap: *app
