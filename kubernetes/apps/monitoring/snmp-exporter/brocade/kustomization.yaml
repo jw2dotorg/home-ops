@@ -5,7 +5,7 @@ resources:
   - dashboard
   - helmrelease.yaml
 configMapGenerator:
-  - name: snmp-exporter
+  - name: snmp-exporter-brocade
     file:
       - snmp.yaml=./snmp.yaml
 generatorOptions:
