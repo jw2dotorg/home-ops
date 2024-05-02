@@ -6,6 +6,8 @@ auths:
     community: public
 modules:
   brocade:
+      retries: 3
+      timeout: 60s
       walk:
       - 1.3.6.1.2.1.2
       - 1.3.6.1.2.1.31.1.1
@@ -1215,6 +1217,3 @@ modules:
           labelname: ifName
           oid: 1.3.6.1.2.1.31.1.1.1.1
           type: DisplayString
-      version: 2
-      retries: 3
-      timeout: 60s
