@@ -5,7 +5,7 @@ metadata:
   name: &app omada-controller
   namespace: flux-system
 spec:
-  targetNamespace: network
+  targetNamespace: networking
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
