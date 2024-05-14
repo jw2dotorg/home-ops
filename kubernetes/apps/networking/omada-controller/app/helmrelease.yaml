@@ -55,7 +55,7 @@ spec:
       controller:
         type: LoadBalancer
         externalIPs:
-          - ${SVC_OMADA_ADDR}
+          - '172.16.0.216'
         externalTrafficPolicy: Local
         ipFamilyPolicy: SingleStack
         controller: main
