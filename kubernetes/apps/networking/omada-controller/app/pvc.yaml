@@ -4,9 +4,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: omada-data-pvc
 spec:
-  accessModes:
-    - ReadWriteOnce
-  volumeMode: Filesystem
+  accessModes: ["ReadWriteOnce"]
   resources:
     requests:
       storage: 10Gi
