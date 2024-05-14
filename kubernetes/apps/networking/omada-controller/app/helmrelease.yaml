@@ -54,10 +54,7 @@ spec:
             port: *httpPort
       controller:
         type: LoadBalancer
-        externalIPs:
-          - '172.16.0.216'
-        externalTrafficPolicy: Local
-        ipFamilyPolicy: SingleStack
+        loadBalancerIP: '172.16.0.216'
         controller: main
         ports:
           # # Docs: https://www.tp-link.com/us/support/faq/3281/
