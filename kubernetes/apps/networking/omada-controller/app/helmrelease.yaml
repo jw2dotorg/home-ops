@@ -47,6 +47,7 @@ spec:
                 memory: 2000Mi
     service:
       main:
+        controller: main
         enabled: true
         ports:
           http:
