@@ -54,7 +54,9 @@ spec:
             port: *httpPort
       controller:
         type: LoadBalancer
-        loadBalancerIP: '172.16.0.216'
+        annotations:
+          io.cilium/lb-ipam-ips: '172.16.0.216'
+        externalTrafficPolicy: Local
         controller: main
         ports:
           # # Docs: https://www.tp-link.com/us/support/faq/3281/
