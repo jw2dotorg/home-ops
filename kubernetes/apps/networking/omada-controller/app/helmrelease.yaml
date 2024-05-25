@@ -4,8 +4,7 @@ kind: HelmRelease
 metadata:
   name: &app omada-controller
 spec:
-  interval: 30m
-  timeout: 10m
+  interval: 15m
   chart:
     spec:
       chart: app-template
@@ -48,19 +47,17 @@ spec:
                 memory: 2000Mi
     service:
       main:
-        controller: main
+        enabled: true
         ports:
           http:
             port: *httpPort
       controller:
+        controller: main
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: '172.16.0.216'
         externalTrafficPolicy: Local
-        controller: main
         ports:
-          # # Docs: https://www.tp-link.com/us/support/faq/3281/
-          # Management Ports
           mgmt-8088-tcp:
             enabled: true
             port: 8088
@@ -76,7 +73,6 @@ spec:
             port: 8843
             protocol: TCP
             targetPort: 8843
-          # Device Discovery, Adoption, Management, and Upgrade
           eap-v5-discovery:
             enabled: true
             port: 29810
