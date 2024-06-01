@@ -115,6 +115,7 @@ cameras:
         - bicycle
       filters:
         person:
+          threshold: 0.75 # 75%
           mask: 
             - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
     motion:
