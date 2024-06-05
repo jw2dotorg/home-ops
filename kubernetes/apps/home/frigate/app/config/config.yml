@@ -213,6 +213,9 @@ cameras:
         - dog
         - cat
         - bicycle
+      filters:
+        person:
+          threshold: 0.75 # 75%
 
   doorbell-back:
     ui: 
