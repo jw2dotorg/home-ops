@@ -27,14 +27,14 @@ spec:
       enabled: true
     immich:
       persistence:
-        library:
-          existingClaim: immich-nfs
         external:
           type: nfs
           server: "prox.${SECRET_DOMAIN}"
           path: /saspool2/photos
           globalMounts:
             - path: /external
+        library:
+          existingClaim: immich-nfs2
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       tag: "v1.106.4"
