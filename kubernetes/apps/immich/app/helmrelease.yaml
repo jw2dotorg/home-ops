@@ -34,7 +34,7 @@ spec:
           server: "prox.${SECRET_DOMAIN}"
           path: /saspool2/photos
           globalMounts:
-            - path: /mnt/photos
+            - path: /external
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       tag: "v1.106.4"
