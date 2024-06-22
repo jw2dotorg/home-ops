@@ -16,27 +16,26 @@ spec:
       interval: 15m
 
   values:
-
     postgresql:
       enabled: true
       image:
         repository: tensorchord/pgvecto-rs
         tag: pg14-v0.2.0
-
     env:
       LOG_LEVEL: verbose
-
     redis:
       enabled: true
-
     immich:
       persistence:
         library:
           existingClaim: immich-nfs
-
+        external:
+          type: nfs
+          server: "prox.${SECRET_DOMAIN}"
+          path: /mnt/photos
     image:
-      tag: "v1.106.3"
-
+      # renovate: datasource=github-releases depName=immich-app/immich
+      tag: "v1.106.4"
     server:
       resources:
         requests:
@@ -58,7 +57,6 @@ spec:
             - hosts:
                 - *host
               secretName: *host
-
     microservices:
       controller:
         replicas: 2
@@ -66,7 +64,6 @@ spec:
         requests:
           cpu: 100m
           memory: 250M
-
     machine-learning:
       resources:
         requests:
