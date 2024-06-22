@@ -32,7 +32,9 @@ spec:
         external:
           type: nfs
           server: "prox.${SECRET_DOMAIN}"
-          path: /mnt/photos
+          path: /saspool2/photos
+          globalMounts:
+            - path: /mnt/photos
     image:
       # renovate: datasource=github-releases depName=immich-app/immich
       tag: "v1.106.4"
