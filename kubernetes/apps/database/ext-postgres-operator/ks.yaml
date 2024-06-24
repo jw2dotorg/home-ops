@@ -17,4 +17,4 @@ spec:
     name: home-kubernetes
   wait: true
   dependsOn:
-    - name: postgres-cluster
+    - name: cloudnative-pg-cluster
