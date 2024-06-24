@@ -14,14 +14,28 @@ spec:
   superuserSecret:
     name: postgres-superuser
   enableSuperuserAccess: true
+
   postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
     parameters:
       max_connections: "400"
       shared_buffers: 256MB
-    shared_preload_libraries:
-      - "vectors.so"
+      search_path: '"$user", public, vectors'
+
+  bootstrap:
+    initdb:
+      postInitApplicationSQL: 
+        - CREATE EXTENSION IF NOT EXISTS "cube";
+        - CREATE EXTENSION IF NOT EXISTS vectors;
+        - CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;
+        # - ALTER DATABASE app SET search_path TO "$user", public, vectors;
+        - GRANT ALL ON SCHEMA vectors TO app;
+        - GRANT SELECT ON TABLE pg_vector_index_stat to app;
+
   monitoring:
     enablePodMonitor: true
+
   backup:
     retentionPolicy: 30d
     barmanObjectStore: &barmanObjectStore
@@ -40,6 +54,7 @@ spec:
         secretAccessKey:
           name: minio-pgsql
           key: minio_s3_secret_access_key
+
   # Note: previousCluster needs to be set to the name of the previous
   # cluster when recovering from an existing cnpg cluster
   #bootstrap:
