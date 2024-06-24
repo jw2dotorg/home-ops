@@ -53,26 +53,26 @@ spec:
               LOG_LEVEL: verbose
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
               SERVER_PORT: &port 3001
-				  DB_HOSTNAME:
-					 valueFrom:
-						secretKeyRef:
-						  name: immich-secret-immich-user
-						  key: HOST
-				  DB_DATABASE_NAME:
-					 valueFrom:
-						secretKeyRef:
-						  name: immich-secret-immich-user
-						  key: DATABASE_NAME
-				  DB_USERNAME:
-					 valueFrom:
-						secretKeyRef:
-						  name: immich-secret-immich-user
-						  key: LOGIN
-				  DB_PASSWORD:
-					 valueFrom:
-						secretKeyRef:
-						  name: immich-secret-immich-user
-						  key: PASSWORD
+              DB_HOSTNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret-immich-user
+                    key: HOST
+              DB_DATABASE_NAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret-immich-user
+                    key: DATABASE_NAME
+              DB_USERNAME:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret-immich-user
+                    key: LOGIN
+              DB_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-secret-immich-user
+                    key: PASSWORD
 
             envFrom:
               - configMapRef:
