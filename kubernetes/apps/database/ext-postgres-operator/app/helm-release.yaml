@@ -28,7 +28,7 @@ spec:
   values:
     podAnnotations:
       reloader.stakater.com/auto: "true"
-    existingSecret: ext-postgres-operator-secret
+    existingSecret: ext-postgres-operator
     env:
       POSTGRES_HOST: "postgres16-rw.database.svc.cluster.local"
       POSTGRES_DEFAULT_DATABASE: "postgres"
