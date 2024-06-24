@@ -50,12 +50,9 @@ spec:
               tag: v1.106.4
 
             env:
-              # General
               LOG_LEVEL: verbose
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
-              # Ports
               SERVER_PORT: &port 3001
-              # Database
 				  DB_HOSTNAME:
 					 valueFrom:
 						secretKeyRef:
@@ -95,7 +92,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/server-info/ping
-                    port: 3001
+                    port: *port
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
@@ -107,7 +104,7 @@ spec:
                 spec:
                   httpGet:
                     path: /api/server-info/ping
-                    port: 3001
+                    port: *port
                   failureThreshold: 30
                   periodSeconds: 5
                   successThreshold: 1
