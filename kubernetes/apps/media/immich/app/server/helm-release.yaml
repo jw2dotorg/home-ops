@@ -58,7 +58,7 @@ spec:
               # Database
               DB_HOSTNAME: "postgres16-rw.database.svc.cluster.local"
               DB_PORT: 5432
-              DB_DATABASE_NAME: "immich"
+              DB_DATABASE_NAME: "immich-db"
               DB_USERNAME:
                 valueFrom:
                   secretKeyRef:
