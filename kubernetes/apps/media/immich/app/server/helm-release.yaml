@@ -115,7 +115,7 @@ spec:
 
     ingress:
       app:
-        ingressclassName: internal
+        className: internal
         annotations:
           nginx.ingress.kubernetes.io/proxy-body-size: "0"
         hosts:
