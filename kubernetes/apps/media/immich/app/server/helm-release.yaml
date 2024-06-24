@@ -56,19 +56,26 @@ spec:
               # Ports
               SERVER_PORT: &port 3001
               # Database
-              DB_HOSTNAME: "postgres16-rw.database.svc.cluster.local"
-              DB_PORT: 5432
-              DB_DATABASE_NAME: "immich-db"
-              DB_USERNAME:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-secret
-                    key: DB_USERNAME
-              DB_PASSWORD:
-                valueFrom:
-                  secretKeyRef:
-                    name: immich-secret
-                    key: DB_PASSWORD
+				  DB_HOSTNAME:
+					 valueFrom:
+						secretKeyRef:
+						  name: immich-secret-immich-user
+						  key: HOST
+				  DB_DATABASE_NAME:
+					 valueFrom:
+						secretKeyRef:
+						  name: immich-secret-immich-user
+						  key: DATABASE_NAME
+				  DB_USERNAME:
+					 valueFrom:
+						secretKeyRef:
+						  name: immich-secret-immich-user
+						  key: LOGIN
+				  DB_PASSWORD:
+					 valueFrom:
+						secretKeyRef:
+						  name: immich-secret-immich-user
+						  key: PASSWORD
 
             envFrom:
               - configMapRef:
