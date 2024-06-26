@@ -2,9 +2,9 @@
 apiVersion: db.movetokube.com/v1alpha1
 kind: Postgres
 metadata:
-  name: immich-db
+  name: immich
 spec:
-  database: immich-db
+  database: immich
 
 ---
 apiVersion: db.movetokube.com/v1alpha1
@@ -13,6 +13,6 @@ metadata:
   name: immich-user
 spec:
   role: immich
-  database: immich-db
+  database: immich
   secretName: immich-secret
   privileges: OWNER
