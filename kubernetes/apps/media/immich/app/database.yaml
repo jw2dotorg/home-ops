@@ -12,7 +12,7 @@ kind: PostgresUser
 metadata:
   name: immich-user
 spec:
-  role: immich-db
+  role: immich
   database: immich-db
   secretName: immich-secret
   privileges: OWNER
