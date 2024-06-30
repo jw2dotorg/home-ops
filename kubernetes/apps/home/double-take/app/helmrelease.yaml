@@ -1,0 +1,91 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app double-take
+  namespace: home
+spec:
+  interval: 30m
+  chart:
+    spec:
+      # renovate: registryUrl=https://bjw-s.github.io/helm-charts
+      chart: app-template
+      version: 3.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: skrashevich/double-take
+              tag: v1.13.11.8
+            env:
+              TZ: ${TIMEZONE}
+              SAVE_UNKNOWN: "true"
+            envFrom:
+              - secretRef:
+                  name: *app
+            resources:
+              requests:
+                cpu: 30m
+                memory: 400M
+              limits:
+                memory: 400M
+
+    service:
+      main:
+        controller: main
+        ports:
+          http:
+            port: &httpPort 3000
+    ingress:
+      main:
+        className: internal
+        hosts:
+          - host: &host dt.${SECRET_DOMAIN}
+            paths:
+              - path: /
+                service:
+                  identifier: main
+                  port: *httpPort
+
+    persistence:
+      config:
+        existingClaim: double-take-config
+        advancedMounts:
+          main:
+            main:
+              - path: /.storage
+
+      config-file:
+        type: configMap
+        name: &config double-take-config
+        advancedMounts:
+          main:
+            main:
+              - path: /.storage/config/config.yml
+                subPath: config.yml
+
+    configMaps:
+      config:
+        enabled: true
+        data:
+          config.yml: |-
+            mqtt:
+              host: mosquitto
+              username: myusername
+              password: mypassword
+
+            frigate:
+              url: http://frigate.home.svc.cluster.local:5000
+
+            time:
+              timezone: ${TIMEZONE}

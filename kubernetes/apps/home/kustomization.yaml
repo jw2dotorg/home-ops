@@ -7,3 +7,4 @@ resources:
   - ./frigate/ks.yaml
   - ./home-assistant/ks.yaml
   - ./eufy-security-ws/ks.yaml
+  - ./double-take/ks.yaml
