@@ -31,9 +31,9 @@ live:
   quality: 1
 
 ffmpeg:
-  hwaccel_args: -c:v h264_qsv
-  output_args:
-    record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
+  hwaccel_args: preset-vaapi
+  #output_args:
+  #  record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
 
 detect:
   width: 1280
@@ -86,7 +86,7 @@ go2rtc:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
     side-garage_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
-    doorbell:  
+    doorbell:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-doorbell.${SECRET_DOMAIN}/h264Preview_01_main  # 2560x1920 @ 20fps
     doorbell_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-doorbell.${SECRET_DOMAIN}/h264Preview_01_sub # 640x480 @ 10fps
@@ -97,7 +97,7 @@ go2rtc:
 
 cameras:
   garage:
-    ui: 
+    ui:
       order: 6
     ffmpeg:
       inputs:
@@ -116,14 +116,14 @@ cameras:
       filters:
         person:
           threshold: 0.75 # 75%
-          mask: 
+          mask:
             - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
     motion:
       mask:
         - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
 
   backyard:
-    ui: 
+    ui:
       order: 5
     ffmpeg:
       inputs:
@@ -133,7 +133,7 @@ cameras:
           roles: ["record"]
 
   driveway:
-    ui: 
+    ui:
       order: 2
     ffmpeg:
       inputs:
@@ -143,7 +143,7 @@ cameras:
           roles: ["record"]
 
   porch:
-    ui: 
+    ui:
       order: 4
     ffmpeg:
       inputs:
@@ -153,7 +153,7 @@ cameras:
           roles: ["record"]
 
   front:
-    ui: 
+    ui:
       order: 3
     ffmpeg:
       inputs:
@@ -163,7 +163,7 @@ cameras:
           roles: ["record"]
 
   side-garage:
-    ui: 
+    ui:
       order: 1
     ffmpeg:
       inputs:
@@ -195,7 +195,7 @@ cameras:
             - 662,377,668,720,528,720,564,374
 
   doorbell:
-    ui: 
+    ui:
       order: 7
     ffmpeg:
       inputs:
@@ -218,7 +218,7 @@ cameras:
           threshold: 0.75 # 75%
 
   doorbell-back:
-    ui: 
+    ui:
       order: 8
     ffmpeg:
       inputs:
