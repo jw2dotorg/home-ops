@@ -8,3 +8,4 @@ resources:
   - ./esphome/ks.yaml
   - ./openspeedtest/ks.yaml
   - ./silverbullet/ks.yaml
+  - ./gitea/ks.yaml
