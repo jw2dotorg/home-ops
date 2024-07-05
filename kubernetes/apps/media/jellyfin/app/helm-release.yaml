@@ -83,5 +83,5 @@ spec:
         server: prox.${SECRET_DOMAIN}
         path: /saspool3/media
         globalMounts:
-          - path: /media
+          - path: /mnt/media
 
