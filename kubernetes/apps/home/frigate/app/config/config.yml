@@ -32,8 +32,8 @@ live:
 
 ffmpeg:
   hwaccel_args: preset-vaapi
-  #output_args:
-  #  record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
+  output_args:
+    record: preset-record-generic-audio-copy
 
 detect:
   width: 1280
