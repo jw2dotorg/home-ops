@@ -31,7 +31,7 @@ live:
   quality: 1
 
 ffmpeg:
-  hwaccel_args: preset-intel-qsv-h264
+  #hwaccel_args: preset-intel-qsv-h264
   output_args:
     record: preset-record-generic-audio-copy
 
