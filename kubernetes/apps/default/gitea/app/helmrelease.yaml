@@ -61,7 +61,7 @@ spec:
         queue:
           TYPE: level
 
-    redis-cluser:
+    redis-cluster:
       enabled: false
     postgresql-ha:
       enabled: false
