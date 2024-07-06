@@ -46,9 +46,7 @@ spec:
 
     gitea:
       admin:
-        username: gitea_admin
-        # password: set in secret
-        email: "gitea@${SECRET_DOMAIN}"
+        existingSecret: gitea
 
       config:
         security:
