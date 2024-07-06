@@ -46,7 +46,7 @@ spec:
 
     gitea:
       admin:
-        existingSecret: gitea
+        existingSecret: gitea-admin-user
 
       config:
         security:
