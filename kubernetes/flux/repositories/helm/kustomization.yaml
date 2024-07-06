@@ -12,6 +12,7 @@ resources:
   - ./ext-postgres-operator.yaml
   - ./external-dns.yaml
   - ./external-secrets.yaml
+  - ./gitea.yaml
   - ./grafana.yaml
   - ./hajimari.yaml
   - ./immich.yaml
