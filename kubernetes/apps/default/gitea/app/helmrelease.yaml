@@ -60,9 +60,3 @@ spec:
           ADAPTER: memory
         queue:
           TYPE: level
-
-  valuesFrom:
-  - kind: Secret
-    name: "gitea-helm-values"
-    valuesKey: gitea.yaml
-    optional: false
