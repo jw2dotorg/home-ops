@@ -60,3 +60,8 @@ spec:
           ADAPTER: memory
         queue:
           TYPE: level
+
+    redis-cluser:
+      enabled: false
+    postgresql-ha:
+      enabled: false
