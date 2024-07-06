@@ -42,7 +42,7 @@ spec:
               tag: 0.13.2
             env:
               TZ: America/New_York
-              LIBVA_DRIVER_NAME: i965
+              LIBVA_DRIVER_NAME: iHD
             probes:
               liveness: &probes
                 enabled: true
