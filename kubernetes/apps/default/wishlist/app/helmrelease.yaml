@@ -51,7 +51,7 @@ spec:
     ingress:
       app:
         enabled: true
-        className: internal
+        className: external
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
@@ -67,4 +67,4 @@ spec:
         enabled: true
         existingClaim: wishlist-data
         globalMounts:
-          - path: /mnt
+          - path: /var/www/grav/user
