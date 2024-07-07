@@ -9,3 +9,4 @@ resources:
   - ./openspeedtest/ks.yaml
   - ./silverbullet/ks.yaml
   - ./gitea/ks.yaml
+  - ./wishlist/ks.yaml
