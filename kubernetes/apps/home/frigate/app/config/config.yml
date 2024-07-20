@@ -43,13 +43,13 @@ detect:
 record:
   enabled: True
   retain:
-    days: 5
+    days: 7
     #days: 30
     #mode: motion
     mode: all
   events:
     retain:
-      default: 5
+      default: 30
       #default: 30
       #mode: motion
       mode: all
