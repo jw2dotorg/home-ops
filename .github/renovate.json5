@@ -131,7 +131,9 @@
       "matchDatasources": ["helm"],
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
-      "semanticCommitScope": "helm"
+      "semanticCommitScope": "helm",
+      "automerge": true,
+      "automergeType": "branch",
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
