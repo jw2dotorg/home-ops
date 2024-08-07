@@ -102,19 +102,25 @@
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["minor"],
       "semanticCommitType": "feat",
-      "semanticCommitScope": "container"
+      "semanticCommitScope": "container",
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["patch"],
       "semanticCommitType": "fix",
-      "semanticCommitScope": "container"
+      "semanticCommitScope": "container",
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["digest"],
       "semanticCommitType": "chore",
-      "semanticCommitScope": "container"
+      "semanticCommitScope": "container",
+      "automerge": true,
+      "automergeType": "branch"
     },
     {
       "matchDatasources": ["helm"],
@@ -133,7 +139,7 @@
       "semanticCommitType": "fix",
       "semanticCommitScope": "helm",
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "branch"
     },
     {
       "matchDatasources": ["galaxy", "galaxy-collection"],
