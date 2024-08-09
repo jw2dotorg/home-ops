@@ -67,23 +67,23 @@ go2rtc:
     garage_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-garage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2  # 1280x720 @ 10fps
     backyard:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-backyard.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-backyard.${SECRET_DOMAIN}/live # 2688x1520 @ 30fps
     backyard_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-backyard.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
     driveway:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-driveway.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-driveway.${SECRET_DOMAIN}/live # 2688x1520 @ 30fps
     driveway_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-driveway.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
     porch:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-porch.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-porch.${SECRET_DOMAIN}/live # 2688x1520 @ 30fps
     porch_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-porch.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
     front:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-front.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-front.${SECRET_DOMAIN}/live # 2688x1520 @ 30fps
     front_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-front.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
     side-garage:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/live # 2560x1920 @ 15fps
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/live # 2688x1520 @ 30fps
     side-garage_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-sidegarage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1280x720 @ 10fps
     doorbell:
