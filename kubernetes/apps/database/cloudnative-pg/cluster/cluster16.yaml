@@ -10,7 +10,6 @@ spec:
   primaryUpdateStrategy: unsupervised
   storage:
     size: 20Gi
-    storageClass: local-path
   superuserSecret:
     name: postgres-superuser
   enableSuperuserAccess: true
