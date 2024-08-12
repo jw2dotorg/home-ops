@@ -98,13 +98,18 @@ spec:
           nfs:
             server: "172.16.0.11"
             path: /saspool1/frigate
-      config-file:
-        type: configMap
-        name: frigate-configmap
+      config:
+        enabled: true
+        existingClaim: frigate-config-v1
         globalMounts:
-          - path: /config/config.yml
-            subPath: config.yml
-            readOnly: true
+          - path: /config
+      #config-file:
+       #type: configMap
+       # name: frigate-configmap
+       # globalMounts:
+       #   - path: /config/config.yml
+       #     subPath: config.yml
+       #     readOnly: true
       media:
         enabled: true
         type: custom
