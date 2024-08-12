@@ -27,8 +27,8 @@ birdseye:
   mode: objects
   quality: 1
 
-live:
-  quality: 1
+#live:
+  #quality: 1
 
 ffmpeg:
   #hwaccel_args: preset-intel-qsv-h264
