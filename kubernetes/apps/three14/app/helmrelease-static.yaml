@@ -62,7 +62,7 @@ spec:
       config:
         type: nfs
         server: prox.${SECRET_DOMAIN}
-        path: /saspool3/site/three14creations
+        path: /saspool3/sites/three14creations
         globalMounts:
           - path: /usr/share/nginx/html
 
