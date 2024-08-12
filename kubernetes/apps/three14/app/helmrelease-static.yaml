@@ -21,14 +21,14 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  values:
 
+  values:
     defaultPodOptions:
       securityContext:
-      runAsUser: 1000
-      runAsGroup: 1000
-      fsGroupChangePolicy: "OnRootMismatch"
-
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+        fsGroupChangePolicy: "OnRootMismatch"
     controllers:
       main:
         annotations:
@@ -72,4 +72,3 @@ spec:
         path: /saspool3/sites/three14creations
         globalMounts:
           - path: /usr/share/nginx/html
-
