@@ -128,6 +128,6 @@ spec:
       data:
         type: nfs
         server: prox.${SECRET_DOMAIN}
-        path: /saspool3/media
+        path: /saspool1/media
         globalMounts:
           - path: /data
