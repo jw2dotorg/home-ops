@@ -68,7 +68,7 @@ go2rtc:
     shed:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-shed.${SECRET_DOMAIN}/live # 4096x1800 @ 25fps
     shed_sub:
-      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-shed.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2 # 1024 ??
+      - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-shed.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=1 # 1024x452 @ 15fps
     garage_sub:
       - rtsp://view:${FRIGATE_RTSP_PASSWORD}@cam-garage.${SECRET_DOMAIN}/cam/realmonitor?channel=1&subtype=2  # 1280x720 @ 10fps
     backyard:
