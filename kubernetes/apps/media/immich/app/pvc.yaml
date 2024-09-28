@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /saspool2/photos/immich
+    path: /saspool1/photos/immich
     server: prox.jw2.org
 ---
 apiVersion: v1

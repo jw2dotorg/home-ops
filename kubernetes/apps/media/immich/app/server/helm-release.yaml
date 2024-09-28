@@ -142,4 +142,4 @@ spec:
       external:
         type: nfs
         server: "prox.${SECRET_DOMAIN}"
-        path: /saspool2/photos
+        path: /saspool1/photos

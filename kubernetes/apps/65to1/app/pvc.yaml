@@ -12,7 +12,7 @@ spec:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /saspool2/65to1
+    path: /saspool1/65to1
     server: prox.jw2.org
 ---
 apiVersion: v1
