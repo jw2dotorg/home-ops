@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -43,6 +43,9 @@ spec:
             env:
               TZ: America/New_York
               LIBVA_DRIVER_NAME: iHD
+            envFrom:
+              - secretRef:
+                  name: frigate
             probes:
               liveness: &probes
                 enabled: true
@@ -99,6 +102,7 @@ spec:
             server: "172.16.0.11"
             path: /saspool1/frigate
       config-file:
+        enabled: true
         type: configMap
         name: frigate-configmap
         globalMounts:
