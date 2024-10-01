@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.6.0
+      version: 3.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -30,12 +30,12 @@ spec:
       nodeSelector:
         kubernetes.io/hostname: k3s-worker1
     controllers:
-      main:
+      zwave-js-ui:
         type: statefulset
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          main:
+          app:
             image:
               repository: ghcr.io/zwave-js/zwave-js-ui
               tag: 9.21.0@sha256:12fe22a8c708b589602878e387c46ea004112d6c4c836ad1291449d9a3ca087e
@@ -64,38 +64,35 @@ spec:
                 memory: 64Mi
               limits:
                 memory: 512Mi
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              accessMode: ReadWriteOnce
-              size: 1Gi
-              globalMounts:
-                - path: /usr/src/app/store
     service:
-      main:
+      app:
         ports:
           http:
             port: *port
           websocket:
             port: 3000
     ingress:
-      main:
+      app:
         enabled: true
         ingressClassName: "nginx"
-        annotations:
-          cert-manager.io/cluster-issuer: "letsencrypt-production"
         hosts:
           - host: &host "zwave.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: app
                   port: http
         tls:
           - hosts:
               - *host
     persistence:
+      config:
+        enabled: true
+        type: persistentVolumeClaim
+        existingClaim: config-zwave-js-ui-0
+        globalMounts:
+          - path: /usr/src/app/store
       usb:
         type: hostPath
         hostPath: '/dev/serial/by-id/usb-Silicon_Labs_Zooz_ZST10 700_Z-Wave_Stick_0001-if00-port0'
