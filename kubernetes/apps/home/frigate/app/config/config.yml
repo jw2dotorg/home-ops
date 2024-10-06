@@ -14,6 +14,56 @@ database:
   path: /data/frigate.db
 
 
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+objects:
+  track:
+    - person
+    - dog
+    - cat
+    - car
+    - bicycle
+
+#birdseye:
+#  mode: objects
+#  quality: 1
+
+#live:
+#  quality: 1
+
+ffmpeg:
+  #hwaccel_args: preset-intel-qsv-h264
+  output_args:
+    record: preset-record-generic-audio-copy
+
+detect:
+  width: 1280
+  height: 720
+  fps: 5
+
+record:
+  enabled: True
+  retain:
+    days: 7
+    #days: 30
+    #mode: motion
+    mode: all
+  events:
+    retain:
+      default: 30
+      #default: 30
+      #mode: motion
+      mode: all
+
+snapshots:
+  enabled: True
+  timestamp: False
+  retain:
+    default: 30
+
 go2rtc:
   streams:
     driveway:
