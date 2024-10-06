@@ -72,6 +72,7 @@ spec:
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: *port
@@ -87,7 +88,7 @@ spec:
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
                   port: http
 
     securityContext:
