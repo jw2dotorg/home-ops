@@ -126,6 +126,6 @@ spec:
         hostPath: /dev/bus/usb
         hostPathType: Directory
         advancedMounts:
-          frigate:
-            app:
+          main:
+            main:
               - path: /dev/bus/usb
