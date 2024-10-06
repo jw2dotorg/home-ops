@@ -1,5 +1,5 @@
 logger:
-  default: info
+  default: debug
 
 auth:
   enabled: False
