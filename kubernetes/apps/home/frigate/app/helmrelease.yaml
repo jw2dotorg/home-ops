@@ -94,13 +94,11 @@ spec:
       privileged: true
 
     persistence:
-      data:
+      config:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "172.16.0.11"
-            path: /saspool1/frigate
+        existingClaim: frigate-config
+        globalMounts:
+          - path: /data
       config-file:
         enabled: true
         type: configMap
@@ -111,12 +109,11 @@ spec:
             readOnly: true
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "172.16.0.11"
-            path: /saspool1/frigate
-        mountPath: /media
+        type: nfs
+        server: "172.16.0.11"
+        path: /saspool1/frigate
+        globalMounts:
+          - path: /media/frigate
       cache:
         enabled: true
         type: emptyDir
@@ -125,6 +122,10 @@ spec:
         globalMounts:
           - path: /dev/shm
       usb:
-        enabled: true
         type: hostPath
         hostPath: /dev/bus/usb
+        hostPathType: Directory
+        advancedMounts:
+          frigate:
+            app:
+              - path: /dev/bus/usb
