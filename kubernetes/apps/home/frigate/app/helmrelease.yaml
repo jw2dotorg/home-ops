@@ -95,12 +95,10 @@ spec:
 
     persistence:
       config:
-        enabled: true
         existingClaim: frigate-config
         globalMounts:
           - path: /data
       config-file:
-        enabled: true
         type: configMap
         name: frigate-configmap
         globalMounts:
@@ -108,14 +106,12 @@ spec:
             subPath: config.yml
             readOnly: true
       media:
-        enabled: true
         type: nfs
-        server: "172.16.0.11"
+        server: 172.16.0.11
         path: /saspool1/frigate
         globalMounts:
           - path: /media/frigate
       cache:
-        enabled: true
         type: emptyDir
         medium: Memory
         sizeLimit: 4Gi
@@ -125,7 +121,5 @@ spec:
         type: hostPath
         hostPath: /dev/bus/usb
         hostPathType: Directory
-        advancedMounts:
-          main:
-            main:
-              - path: /dev/bus/usb
+        globalMounts:
+          - path: /dev/bus/usb
