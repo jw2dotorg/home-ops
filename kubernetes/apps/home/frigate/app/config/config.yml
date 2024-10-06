@@ -1,6 +1,9 @@
 logger:
   default: info
 
+auth:
+  enabled: False
+
 mqtt:
   host: mosquitto
   topic_prefix: frigate
