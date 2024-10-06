@@ -66,6 +66,7 @@ spec:
                 memory: 512Mi
     service:
       app:
+      controller: zwave-js-ui
         ports:
           http:
             port: *port
