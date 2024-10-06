@@ -43,7 +43,6 @@ spec:
             env:
               TZ: America/New_York
               LIBVA_DRIVER_NAME: iHD
-              SECRET_DOMAIN: ${SECRET_DOMAIN}
             envFrom:
               - secretRef:
                   name: frigate
