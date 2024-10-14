@@ -104,29 +104,6 @@ go2rtc:
       - rtsp://view:{FRIGATE_RTSP_PASSWORD}@cam-doorbell.{FRIGATE_DOMAIN}/h264Preview_01_sub # 640x480 @ 10fps
 
 cameras:
-  garage:
-    ffmpeg:
-      inputs:
-        - path: rtsp://127.0.0.1:8554/garage_sub
-          roles:
-            - detect
-        - path: rtsp://127.0.0.1:8554/garage
-          roles:
-            - record
-    objects:
-      track:
-        - person
-        - dog
-        - cat
-        - bicycle
-      filters:
-        person:
-          threshold: 0.75 # 75%
-          mask:
-            - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
-    motion:
-      mask:
-        - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
 
   side-garage:
     ui:
@@ -242,4 +219,30 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/backyard
           roles: ["record"]
+
+  garage:
+    ui:
+      order: 9
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/garage_sub
+          roles:
+            - detect
+        - path: rtsp://127.0.0.1:8554/garage
+          roles:
+            - record
+    objects:
+      track:
+        - person
+        - dog
+        - cat
+        - bicycle
+      filters:
+        person:
+          threshold: 0.75 # 75%
+          mask:
+            - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
+    motion:
+      mask:
+        - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
 
