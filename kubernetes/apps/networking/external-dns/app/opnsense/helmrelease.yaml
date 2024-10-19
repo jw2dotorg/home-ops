@@ -42,7 +42,7 @@ spec:
                 name: external-dns-opnsense
                 key: api_key
           - name: OPNSENSE_HOST
-            value: "https://fw.${SECRET_DOMAIN}"
+            value: https://172.16.0.3
           - name: OPNSENSE_SKIP_TLS_VERIFY
             value: "true"
           - name: LOG_LEVEL
