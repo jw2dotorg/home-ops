@@ -88,9 +88,6 @@ data:
       ingress:
         enabled: true
         ingressClassName: internal
-        annotations:
-          hajimari.io/appName: Prometheus
-          hajimari.io/icon: simple-icons:prometheus
         pathType: Prefix
         hosts:
           - "prometheus.${SECRET_DOMAIN}"
