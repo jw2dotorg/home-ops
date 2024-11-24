@@ -52,7 +52,7 @@ spec:
             env:
               LOG_LEVEL: verbose
               IMMICH_MEDIA_LOCATION: &mediaLocation /usr/src/app/upload
-              SERVER_PORT: &port 3001
+              SERVER_PORT: &port 2283
               DB_HOSTNAME:
                 valueFrom:
                   secretKeyRef:
