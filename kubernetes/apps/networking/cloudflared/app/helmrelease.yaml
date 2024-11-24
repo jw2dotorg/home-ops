@@ -86,7 +86,12 @@ spec:
     serviceMonitor:
       main:
         serviceName: *app
-        enabled: true
+        endpoints:
+          - port: http
+            scheme: http
+            path: /metrics
+            interval: 1m
+            scrapeTimeout: 30s
     persistence:
       config:
         enabled: true
