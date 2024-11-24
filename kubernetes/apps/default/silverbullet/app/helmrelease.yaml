@@ -59,14 +59,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: "nginx"
+        className: internal
         hosts:
           - host: &host "notes.${SECRET_DOMAIN}"
             paths:
               - path: /
                 pathType: Prefix
                 service:
-                  name: main
+                  identifier: main
                   port: http
         tls:
           - hosts:
