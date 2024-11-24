@@ -39,6 +39,7 @@ spec:
 
     service:
       main:
+        controller: main
         ports:
           http:
             port: 6052
@@ -46,14 +47,14 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         hosts:
           - host: &host "esphome.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
-                  name: main
-                  port: http
+                  identifier: main
+                  port: 80
         tls:
           - hosts:
               - *host
