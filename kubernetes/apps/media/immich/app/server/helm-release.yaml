@@ -96,19 +96,10 @@ spec:
                   initialDelaySeconds: 0
                   periodSeconds: 10
                   timeoutSeconds: 1
-                  failureThreshold: 3
+                  failureThreshold: 30
               readiness: *probes
               startup:
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/server-info/ping
-                    port: *port
-                  failureThreshold: 30
-                  periodSeconds: 5
-                  successThreshold: 1
-                  timeoutSeconds: 1
+                enabled: false
 
     service:
       app:
