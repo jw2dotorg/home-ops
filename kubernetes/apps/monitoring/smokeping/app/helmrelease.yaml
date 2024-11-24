@@ -43,19 +43,21 @@ spec:
                 memory: 192Mi
     service:
       main:
+        controller: main
         ports:
           http:
             port: 80
     ingress:
       main:
         enabled: true
-        ingressClassName: internal
+        className: internal
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
-                  name: main
+                  identifier: main
+                  port: http
         tls:
           - hosts:
               - *host
