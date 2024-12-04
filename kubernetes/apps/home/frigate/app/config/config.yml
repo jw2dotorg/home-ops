@@ -186,10 +186,10 @@ cameras:
       filters:
         person:
           threshold: 0.75 # 75%
-    #motion:
-    #  mask:
+    motion:
+      mask:
     #    - 0.013,0.018,0.013,0.053,0.342,0.054,0.344,0.017 # clock
-    #    - 0.168,0.075,0.164,0.242,0.282,0.243,0.283,0.073 # light fixture
+        - 0.168,0.075,0.164,0.242,0.282,0.243,0.283,0.073 # light fixture
 
   porch:
     ui:
