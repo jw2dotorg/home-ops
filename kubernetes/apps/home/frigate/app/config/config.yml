@@ -126,6 +126,7 @@ cameras:
         coordinates: 716,0,1280,0,971,720,0,720,0,422
     motion:
       mask:
+        - 0.689,0.034,0.686,0.089,0.961,0.093,0.963,0.034 # clock
         - 662,377,668,720,528,720,564,374  # bushes
     objects:
       filters:
@@ -135,7 +136,7 @@ cameras:
         person:
           mask:
             - 662,377,668,720,528,720,564,374
-            - 0.993,0.149,0.715,0.182,0.656,0.986,0.997,0.999
+            - 0.993,0.149,0.715,0.182,0.656,0.986,0.997,0.999 # downspout
 
   driveway:
     ui:
@@ -146,6 +147,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/driveway
           roles: ["record"]
+    motion:
+      mask:
+        - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
 
   front:
     ui:
@@ -156,6 +160,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/front
           roles: ["record"]
+    motion:
+      mask:
+        - 0.752,0.035,0.75,0.088,0.966,0.09,0.968,0.037 # clock
 
   doorbell:
     ui:
@@ -179,6 +186,10 @@ cameras:
       filters:
         person:
           threshold: 0.75 # 75%
+    motion:
+      mask:
+        - 0.013,0.018,0.013,0.053,0.342,0.054,0.344,0.017 # clock
+        - 0.168,0.075,0.164,0.242,0.282,0.243,0.283,0.073 # light fixture
 
   porch:
     ui:
@@ -189,6 +200,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/porch
           roles: ["record"]
+    motion:
+      mask:
+        - 0.686,0.034,0.684,0.089,0.963,0.09,0.963,0.035 # clock
 
   side:
     ui:
@@ -199,6 +213,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/side
           roles: ["record"]
+    motion:
+      mask:
+        - 0.674,0.036,0.674,0.091,0.956,0.093,0.956,0.032 # clock
 
   shed:
     ui:
@@ -209,6 +226,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/shed
           roles: ["record"]
+    motion:
+      mask:
+        - 0.684,0.035,0.685,0.095,0.962,0.094,0.963,0.035 # clock
 
   backyard:
     ui:
@@ -219,6 +239,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/backyard
           roles: ["record"]
+    motion:
+      mask:
+        - 0.684,0.035,0.685,0.094,0.965,0.102,0.966,0.03 # clock
 
   garage:
     ui:
@@ -245,4 +268,5 @@ cameras:
     motion:
       mask:
         - 1008,268,1038,268,1067,133,1041,123  # garage door hinge
+        - 0.682,0.03,0.681,0.101,0.963,0.091,0.962,0.028 # clock
 
