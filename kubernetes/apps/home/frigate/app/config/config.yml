@@ -136,7 +136,7 @@ cameras:
         person:
           mask:
             - 662,377,668,720,528,720,564,374
-            - 0.993,0.149,0.715,0.182,0.656,0.986,0.997,0.999 # downspout
+            #- 0.993,0.149,0.715,0.182,0.656,0.986,0.997,0.999 # downspout
 
   driveway:
     ui:
@@ -147,9 +147,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/driveway
           roles: ["record"]
-    motion:
-      mask:
-        - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
+    #motion:
+    #  mask:
+    #    - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
 
   front:
     ui:
@@ -160,9 +160,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/front
           roles: ["record"]
-    motion:
-      mask:
-        - 0.752,0.035,0.75,0.088,0.966,0.09,0.968,0.037 # clock
+    #motion:
+    #  mask:
+    #    - 0.752,0.035,0.75,0.088,0.966,0.09,0.968,0.037 # clock
 
   doorbell:
     ui:
@@ -200,9 +200,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/porch
           roles: ["record"]
-    motion:
-      mask:
-        - 0.686,0.034,0.684,0.089,0.963,0.09,0.963,0.035 # clock
+    #motion:
+    #  mask:
+    #    - 0.686,0.034,0.684,0.089,0.963,0.09,0.963,0.035 # clock
 
   side:
     ui:
@@ -213,9 +213,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/side
           roles: ["record"]
-    motion:
-      mask:
-        - 0.674,0.036,0.674,0.091,0.956,0.093,0.956,0.032 # clock
+    #motion:
+    #  mask:
+    #    - 0.674,0.036,0.674,0.091,0.956,0.093,0.956,0.032 # clock
 
   shed:
     ui:
@@ -226,9 +226,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/shed
           roles: ["record"]
-    motion:
-      mask:
-        - 0.684,0.035,0.685,0.095,0.962,0.094,0.963,0.035 # clock
+    #motion:
+    #  mask:
+    #    - 0.684,0.035,0.685,0.095,0.962,0.094,0.963,0.035 # clock
 
   backyard:
     ui:
@@ -239,9 +239,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/backyard
           roles: ["record"]
-    motion:
-      mask:
-        - 0.684,0.035,0.685,0.094,0.965,0.102,0.966,0.03 # clock
+    #motion:
+    #  mask:
+    #    - 0.684,0.035,0.685,0.094,0.965,0.102,0.966,0.03 # clock
 
   garage:
     ui:
