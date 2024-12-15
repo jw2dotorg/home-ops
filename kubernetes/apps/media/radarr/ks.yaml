@@ -10,9 +10,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    # TODO - move to cpng
-    #- name: crunchy-postgres-operator-cluster
-    #- name: crunchy-postgres-operator-clustersecretstore
     - name: external-secrets-bitwarden-secrets-manager
   path: ./kubernetes/apps/media/radarr/app
   prune: true
