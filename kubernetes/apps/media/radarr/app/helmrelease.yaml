@@ -120,9 +120,9 @@ spec:
         existingClaim: *app
       tmp:
         type: emptyDir
-      data:
+      media:
         type: nfs
         server: prox.${SECRET_DOMAIN}
         path: /saspool1/media
         globalMounts:
-          - path: /data
+          - path: /media
