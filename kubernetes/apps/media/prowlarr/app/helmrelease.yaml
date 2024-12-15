@@ -78,3 +78,5 @@ spec:
     persistence:
       config:
         existingClaim: *app
+      tmp:
+        type: emptyDir
