@@ -77,4 +77,4 @@ spec:
               - *host
     persistence:
       config:
-        type: emptyDir
+        existingClaim: *app
