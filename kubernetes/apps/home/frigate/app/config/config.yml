@@ -215,6 +215,16 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/side
           roles: ["record"]
+    zones:
+      neighbors_yard:
+        coordinates: 0.997,0.343,0.997,0.004,0.064,0.004,0.038,0.089,0.041,0.14,0.52,0.22,0.637,0.143
+        objects:  # everything but cars
+          - person
+          - dog
+          - cat
+          - bicycle
+      my_yard:
+        coordinates: 0.033,0.09,0.036,0.143,0.52,0.222,0.64,0.151,0.995,0.347,0.994,0.997,0,0.995,0,0.003,0.059,0
     motion:
       mask:
         - 0.674,0.036,0.674,0.091,0.956,0.093,0.956,0.032 # clock
