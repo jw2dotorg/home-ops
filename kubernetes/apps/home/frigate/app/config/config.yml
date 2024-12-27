@@ -147,9 +147,9 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/driveway
           roles: ["record"]
-    #motion:
-    #  mask:
-    #    - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
+    motion:
+      mask:
+        - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
 
   front:
     ui:
