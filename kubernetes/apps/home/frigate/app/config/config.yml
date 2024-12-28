@@ -132,11 +132,19 @@ cameras:
       filters:
         dog:
           mask:
-            - 662,377,668,720,528,720,564,374
+            - 662,377,668,720,528,720,564,374 # bushes
         person:
           mask:
-            - 662,377,668,720,528,720,564,374
+            - 662,377,668,720,528,720,564,374 # bushes
             - 0.993,0.149,0.715,0.182,0.656,0.986,0.997,0.999 # downspout
+    review:
+      alerts:
+        required_zones:
+          - my_driveway
+      #detections:
+      #  required_zones:
+      #    - my_driveway
+    
 
   driveway:
     ui:
@@ -228,6 +236,13 @@ cameras:
     motion:
       mask:
         - 0.674,0.036,0.674,0.091,0.956,0.093,0.956,0.032 # clock
+    review:
+      alerts:
+        required_zones:
+          - my_yard
+      #detections:
+      #  required_zones:
+      #    - my_yard
 
   shed:
     ui:
