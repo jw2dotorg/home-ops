@@ -14,7 +14,7 @@ database:
   path: /data/frigate.db
 
 
-detectors:
+#detectors:
   #coral:
   #  type: edgetpu
   #  device: usb
