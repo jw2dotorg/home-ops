@@ -15,9 +15,9 @@ database:
 
 
 detectors:
-  coral:
-    type: edgetpu
-    device: usb
+  #coral:
+  #  type: edgetpu
+  #  device: usb
 
 objects:
   track:
