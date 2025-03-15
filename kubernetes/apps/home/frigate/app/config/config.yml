@@ -51,11 +51,11 @@ record:
     mode: all
   alerts:
     retain:
-      default: 30
+      days: 30  ####
       mode: motion
   detections:
     retain:
-      default: 30
+      days: 30  ####
       mode: motion
 
 snapshots:
