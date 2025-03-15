@@ -105,7 +105,7 @@ spec:
           revision: 31
           datasource: Prometheus
         cloudnative-pg:
-          url: https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/main/docs/src/samples/monitoring/grafana-dashboard.json
+          url: https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/refs/heads/main/charts/cluster/grafana-dashboard.json
           datasource: Prometheus
       flux:
         flux-cluster:
