@@ -2,7 +2,7 @@ logger:
   default: info
 
 auth:
-  enabled: False
+  enabled: false
 
 mqtt:
   host: mosquitto
@@ -14,10 +14,10 @@ database:
   path: /data/frigate.db
 
 
-#detectors:
-  #coral:
-  #  type: edgetpu
-  #  device: usb
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
 
 objects:
   track:
@@ -35,7 +35,7 @@ objects:
 #  quality: 1
 
 ffmpeg:
-  #hwaccel_args: preset-intel-qsv-h264
+  hwaccel_args: preset-intel-qsv-h264
   output_args:
     record: preset-record-generic-audio-copy
 
@@ -45,22 +45,22 @@ detect:
   fps: 5
 
 record:
-  enabled: True
+  enabled: true
   retain:
     days: 7
-    #days: 30
-    #mode: motion
     mode: all
-  events:
+  alerts:
     retain:
       default: 30
-      #default: 30
-      #mode: motion
-      mode: all
+      mode: motion
+  detections:
+    retain:
+      default: 30
+      mode: motion
 
 snapshots:
-  enabled: True
-  timestamp: False
+  enabled: true
+  timestamp: false
   retain:
     default: 30
 
@@ -144,7 +144,7 @@ cameras:
       detections:
         required_zones:
           - my_driveway
-    
+
 
   driveway:
     ui:
