@@ -32,15 +32,6 @@ spec:
       envFrom:
         - secretRef:
             name: &secret authentik-secret
-    ingress:
-      main:
-        enabled: true
-        className: internal
-        hosts:
-          - host: "sso.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
     postgresql:
       enabled: true
     redis:
@@ -67,6 +58,15 @@ spec:
         prometheus:
           serviceMonitor:
             enabled: true
+      ingress:
+        main:
+          enabled: true
+          className: internal
+          hosts:
+            - host: "sso.${SECRET_DOMAIN}"
+              paths:
+                - path: /
+                  pathType: Prefix
     worker:
       autoscaling:
         enabled: true
