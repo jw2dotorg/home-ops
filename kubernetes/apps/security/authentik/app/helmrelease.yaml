@@ -33,17 +33,17 @@ spec:
         - secretRef:
             name: &secret authentik-secret
       env:
-        - name: AUTHENTIK_POSTGRES__HOST
+        - name: AUTHENTIK_POSTGRESQL__HOST
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
               key: HOST
-        - name: AUTHENTIK_POSTGRES__USER
+        - name: AUTHENTIK_POSTGRESQL__USER
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
               key: LOGIN
-        - name: AUTHENTIK_POSTGRES__PASSWORD
+        - name: AUTHENTIK_POSTGRESQL__PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
