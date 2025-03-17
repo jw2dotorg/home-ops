@@ -33,17 +33,17 @@ spec:
         - secretRef:
             name: &secret authentik-secret
       env:
-        AUTHENTIK_POSTGRES__HOST:
+        - name: AUTHENTIK_POSTGRES__HOST
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
               key: HOST
-        AUTHENTIK_POSTGRES__USER:
+        - name: AUTHENTIK_POSTGRES__USER
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
               key: LOGIN
-        AUTHENTIK_POSTGRES__PASSWORD:
+        - name: AUTHENTIK_POSTGRES__PASSWORD
           valueFrom:
             secretKeyRef:
               name: authentik-secret-authentik-user
@@ -51,6 +51,9 @@ spec:
     authentik:
       redis:
         host: dragonfly.database.svc.cluster.local
+      email:
+        host: mail.${SECRET_DOMAIN}
+        from: 'Authentik <authentik@{$SECRET_DOMAIN}'
     server:
       autoscaling:
         enabled: true
