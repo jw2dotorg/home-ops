@@ -69,12 +69,9 @@ spec:
             enabled: true
       ingress:
         enabled: true
-        className: internal
-        hosts:
-          - host: "sso.${SECRET_DOMAIN}"
-            paths:
-              - path: /
-                pathType: Prefix
+        ingressClassName: internal
+        hosts: ["sso.${SECRET_DOMAIN}"]
+        paths: [/]
     worker:
       autoscaling:
         enabled: true
