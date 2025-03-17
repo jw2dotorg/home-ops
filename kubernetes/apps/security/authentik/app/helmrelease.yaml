@@ -36,12 +36,6 @@ spec:
       redis:
         host: dragonfly.database.svc.cluster.local
     server:
-      initContainers:
-        - name: init-db
-          image: ghcr.io/buroa/postgres-init:17
-          envFrom:
-            - secretRef:
-                name: *secret
       autoscaling:
         enabled: true
         minReplicas: 1
