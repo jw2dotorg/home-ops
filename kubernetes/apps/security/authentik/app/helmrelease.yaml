@@ -70,8 +70,11 @@ spec:
       ingress:
         enabled: true
         ingressClassName: internal
-        hosts: ["sso.${SECRET_DOMAIN}"]
-        paths: [/]
+        hosts:
+          - &host "sso.${SECRET_DOMAIN}"
+        tls:
+          - hosts:
+              - *host
     worker:
       autoscaling:
         enabled: true
