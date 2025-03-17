@@ -32,10 +32,6 @@ spec:
       envFrom:
         - secretRef:
             name: &secret authentik-secret
-    postgresql:
-      enabled: true
-    redis:
-      enabled: true
     authentik:
       redis:
         host: dragonfly.database.svc.cluster.local
