@@ -27,7 +27,7 @@ spec:
     keepHistory: false
   values:
     image:
-      repository: gitea/gitea
+      repository: gitea
       tag: 1.23.6
       pullPolicy: IfNotPresent
 
