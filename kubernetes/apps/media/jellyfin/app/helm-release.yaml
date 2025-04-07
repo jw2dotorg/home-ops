@@ -25,6 +25,9 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
+        pod:
+          nodeSelector:
+            kubernetes.io/hostname: k3s-worker2 # more cpu cores
         containers:
           main:
             image:
