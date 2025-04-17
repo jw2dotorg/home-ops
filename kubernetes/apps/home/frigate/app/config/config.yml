@@ -102,10 +102,10 @@ go2rtc:
       - rtsp://view:{FRIGATE_RTSP_PASSWORD}@cam-doorbell.{FRIGATE_DOMAIN}/h264Preview_01_main  # 2560x1920 @ 20fps
     doorbell_sub:
       - rtsp://view:{FRIGATE_RTSP_PASSWORD}@cam-doorbell.{FRIGATE_DOMAIN}/h264Preview_01_sub # 640x480 @ 10fps
-    doorbell-amcrest:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@doorbell-amcrest.{FRIGATE_DOMAIN}/cam/realmonitor?channel=1&subtype=0  # 2560x1920 @ 15fps
-    doorbell-amcrest_sub:
-      - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@doorbell-amcrest.{FRIGATE_DOMAIN}/cam/realmonitor?channel=1&subtype=1  # 720x576 @ 15fps
+    #doorbell-amcrest:
+      #  - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@doorbell-amcrest.{FRIGATE_DOMAIN}/cam/realmonitor?channel=1&subtype=0  # 2560x1920 @ 15fps
+    #doorbell-amcrest_sub:
+      #  - rtsp://admin:{FRIGATE_RTSP_PASSWORD}@doorbell-amcrest.{FRIGATE_DOMAIN}/cam/realmonitor?channel=1&subtype=1  # 720x576 @ 15fps
 
 cameras:
 
@@ -300,15 +300,15 @@ cameras:
       mask:
         - 0.787,0.372,0.811,0.372,0.834,0.185,0.813,0.171 # garage door hinge
         - 0.682,0.03,0.681,0.101,0.963,0.091,0.962,0.028 # clock
-  doorbell-amcrest:
-    ui:
-      order: 10
-    ffmpeg:
-      inputs:
-        - path: rtsp://127.0.0.1:8554/doorbell-amcrest_sub
-          roles:
-            - detect
-        - path: rtsp://127.0.0.1:8554/doorbell-amcrest
-          roles:
-            - record
+  #doorbell-amcrest:
+    #  ui:
+      #  order: 10
+    #ffmpeg:
+      #  inputs:
+        #  - path: rtsp://127.0.0.1:8554/doorbell-amcrest_sub
+        #  roles:
+        #    - detect
+        # - path: rtsp://127.0.0.1:8554/doorbell-amcrest
+        #  roles:
+        #    - record
 
