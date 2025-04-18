@@ -91,6 +91,10 @@ spec:
               - *host
 
     persistence:
+      config:
+        existingClaim: qbittorrent-config
+        globalMounts:
+          - path: "/config"
       downloads:
         type: nfs
         server: prox.${SECRET_DOMAIN}
