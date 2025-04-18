@@ -91,16 +91,6 @@ spec:
               - *host
 
     persistence:
-      config:
-        existingClaim: *app
-      scripts:
-        type: configMap
-        name: qbittorrent-scripts
-        defaultMode: 0775
-        advancedMounts:
-          qbittorrent:
-            qbittorrent:
-              - path: /scripts
       downloads:
         type: nfs
         server: prox.${SECRET_DOMAIN}
