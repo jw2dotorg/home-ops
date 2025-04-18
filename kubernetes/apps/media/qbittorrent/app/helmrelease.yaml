@@ -85,12 +85,10 @@ spec:
         existingClaim: qbittorrent-config
         globalMounts:
           - path: "/config"
-      downloads:
+      media:
         type: nfs
         server: prox.${SECRET_DOMAIN}
         path: /saspool1/media
-        advancedMounts:
-          qbittorrent:
-            qbittorrent:
-              - path: /media/downloads/qbittorrent
-                subPath: downloads/qbittorrent
+        globalMounts:
+          - path: /media/downloads/qbittorrent
+            subPath: downloads/qbittorrent
