@@ -1,5 +1,7 @@
 logger:
   default: info
+  logs:
+    frigate.record.maintainer: debug # temp debug
 
 auth:
   enabled: false
