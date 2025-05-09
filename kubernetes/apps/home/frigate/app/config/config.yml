@@ -20,6 +20,10 @@ database:
   #  coral:
   #  type: edgetpu
   #  device: usb
+detectors:
+  ov:
+    type: openvino
+    device: GPU
 
 objects:
   track:
