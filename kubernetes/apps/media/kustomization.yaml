@@ -11,3 +11,4 @@ resources:
   - ./immich/ks.yaml
   - ./jellyfin/ks.yaml
   - ./qbittorrent/ks.yaml
+  - ./jellyseerr/ks.yaml
