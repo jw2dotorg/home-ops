@@ -4,6 +4,7 @@ metadata:
   name: &app jellyseerr
   namespace: flux-system
 spec:
+  targetNamespace: media
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
