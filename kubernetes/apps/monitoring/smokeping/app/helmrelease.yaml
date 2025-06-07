@@ -31,7 +31,7 @@ spec:
           main:
             image:
               repository: ghcr.io/linuxserver/smokeping
-              tag: 2.8.2
+              tag: 2.9.0
             env:
               TZ: ${TIMEZONE}
             resources:
