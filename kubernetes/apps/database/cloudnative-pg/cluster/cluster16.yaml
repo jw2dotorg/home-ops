@@ -9,7 +9,7 @@ spec:
   imageName: tensorchord/cloudnative-pgvecto-rs:16-v0.2.1
   primaryUpdateStrategy: unsupervised
   storage:
-    size: 30Gi
+    size: 40Gi
   superuserSecret:
     name: postgres-superuser
   enableSuperuserAccess: true
