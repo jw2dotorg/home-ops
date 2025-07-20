@@ -13,4 +13,3 @@ resources:
   - ./qbittorrent/ks.yaml
   - ./jellyseerr/ks.yaml
   - ./huntarr/ks.yaml
-  - ./lidarr/ks.yaml
