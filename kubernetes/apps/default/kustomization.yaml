@@ -9,3 +9,4 @@ resources:
   - ./silverbullet/ks.yaml
   - ./gitea/ks.yaml
   - ./wishlist/ks.yaml
+  - ./paperless/ks.yaml
