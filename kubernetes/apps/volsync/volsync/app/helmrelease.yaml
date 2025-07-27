@@ -28,6 +28,5 @@ spec:
       namespace: kube-system
   values:
     manageCRDs: true
-    image:
     metrics:
       disableAuth: true
