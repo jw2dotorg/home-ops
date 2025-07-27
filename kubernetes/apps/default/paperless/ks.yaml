@@ -10,15 +10,6 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   prune: true
-  dependsOn:
-    - name: cloudnative-pg-cluster
-      namespace: database
-    - name: dragonfly-cluster
-      namespace: database
-    - name: onepassword
-      namespace: external-secrets
-    - name: volsync
-      namespace: storage
   components:
     - ../../../components/volsync
   sourceRef:
