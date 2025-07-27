@@ -41,12 +41,12 @@ spec:
               PAPERLESS_REDIS: redis://dragonfly.database.svc.cluster.local
               PAPERLESS_DBHOST: postgres16-rw.database.svc.cluster.local
               PAPERLESS_DBNAME: paperless
-              - name: PAPERLESS_DBUSER
+              PAPERLESS_DBUSER:
                 valueFrom:
                   secretKeyRef:
                    name: paperless-secret-paperless-user
                    key: LOGIN
-              - name: PAPERLESS_DBPASS
+              PAPERLESS_DBPASS:
                 valueFrom:
                   secretKeyRef:
                    name: paperless-secret-paperless-user
