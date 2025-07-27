@@ -44,16 +44,16 @@ spec:
               PAPERLESS_DBUSER:
                 valueFrom:
                   secretKeyRef:
-                   name: paperless-secret-paperless-user
-                   key: LOGIN
+                    name: paperless-secret-paperless-user
+                    key: LOGIN
               PAPERLESS_DBPASS:
                 valueFrom:
                   secretKeyRef:
-                   name: paperless-secret-paperless-user
-                   key: PASSWORD
+                    name: paperless-secret-paperless-user
+                    key: PASSWORD
             envFrom:
               - secretRef:
-                name: paperless-secret
+                  name: paperless-secret
 
             securityContext:
               allowPrivilegeEscalation: false
