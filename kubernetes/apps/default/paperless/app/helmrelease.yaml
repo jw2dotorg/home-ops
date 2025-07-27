@@ -92,6 +92,6 @@ spec:
       nas:
         type: nfs
         server: prox.${SECRET_DOMAIN}
-        path: /saspool1/docs/paperless
+        path: /saspool1/docs
         globalMounts:
-          - path: /docs/paperless
+          - path: /docs
