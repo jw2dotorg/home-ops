@@ -38,7 +38,7 @@ spec:
               PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
               PAPERLESS_OCR_LANGUAGE: eng
               PAPERLESS_OCR_LANGUAGES: eng
-              PAPERLESS_REDIS: redis://dragonfly.databases.svc.cluster.local
+              PAPERLESS_REDIS: redis://dragonfly.database.svc.cluster.local
               PAPERLESS_DBHOST: postgres16-rw.database.svc.cluster.local
               PAPERLESS_DBNAME: paperless
             envFrom:
