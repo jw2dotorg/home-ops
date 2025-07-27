@@ -25,7 +25,7 @@ spec:
               - secretRef:
                   name: paperless-secret
         containers:
-          app:
+          main:
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.17.1@sha256:ab72a0ab42a792228cdbe83342b99a48acd49f7890ae54b1ae8e04401fba24ee
@@ -64,14 +64,14 @@ spec:
                 memory: 2048Mi
 
     service:
-      app:
+      main:
         controller: main
         ports:
           http:
             port: &httpPort 8000
 
     ingress:
-      app:
+      main:
         className: internal
         hosts:
           - host: &host paperless.${SECRET_DOMAIN}
@@ -89,7 +89,7 @@ spec:
         existingClaim: *app
         advancedMounts:
           paperless:
-            app:
+            main:
               - path: /usr/src/paperless/data
                 subPath: data
               - path: /usr/src/paperless/media
