@@ -107,14 +107,13 @@ spec:
       tmpfs:
         type: emptyDir
         advancedMounts:
-          jellyfin:
-            main:
-              - path: /cache
-                subPath: cache
-              - path: /config/log
-                subPath: log
-              - path: /tmp
-                subPath: tmp
+          main:
+            - path: /cache
+              subPath: cache
+            - path: /config/log
+              subPath: log
+            - path: /tmp
+              subPath: tmp
 
       config:
         existingClaim: jellyfin-config
