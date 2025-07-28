@@ -41,6 +41,13 @@ spec:
               PAPERLESS_REDIS: redis://dragonfly.database.svc.cluster.local
               PAPERLESS_DBHOST: postgres16-rw.database.svc.cluster.local
               PAPERLESS_DBNAME: paperless
+              # sso
+              PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+              PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: 'false'
+              PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: 'true'
+              PAPERLESS_DISABLE_REGULAR_LOGIN: 'true'
+              PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
+              # database
               PAPERLESS_DBUSER:
                 valueFrom:
                   secretKeyRef:
