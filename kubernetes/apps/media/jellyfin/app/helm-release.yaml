@@ -103,16 +103,18 @@ spec:
               - *host
 
     persistence:
+
       tmpfs:
-      advancedMounts:
-        jellyfin:
-          main:
-            - path: /cache
-              subPath: cache
-            - path: /config/log
-              subPath: log
-            - path: /tmp
-              subPath: tmp
+        type: emptyDir
+        advancedMounts:
+          jellyfin:
+            main:
+              - path: /cache
+                subPath: cache
+              - path: /config/log
+                subPath: log
+              - path: /tmp
+                subPath: tmp
 
       config:
         existingClaim: jellyfin-config
