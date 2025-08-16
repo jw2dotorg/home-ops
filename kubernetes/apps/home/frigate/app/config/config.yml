@@ -36,6 +36,7 @@ model:
 objects:
   track:
     - person
+    - face
     - dog
     - cat
     - car
