@@ -312,6 +312,7 @@ cameras:
     objects:
       track:
         - person
+        - face
         - dog
         - cat
         - bicycle
