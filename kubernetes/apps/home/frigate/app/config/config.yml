@@ -41,6 +41,9 @@ objects:
     - car
     - bicycle
 
+face_recognition:
+  enabled: true
+
 #birdseye:
 #  mode: objects
 #  quality: 1
