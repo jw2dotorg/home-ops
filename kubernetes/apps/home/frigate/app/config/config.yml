@@ -51,9 +51,10 @@ objects:
 ffmpeg:
   hwaccel_args: preset-intel-qsv-h264
   output_args:
-    record: preset-record-generic-audio-copy
+    record: preset-record-generic-audio-aac
 
 detect:
+  enabled: true
   width: 1280
   height: 720
   fps: 5
