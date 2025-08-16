@@ -36,7 +36,6 @@ model:
 objects:
   track:
     - person
-    - face
     - dog
     - cat
     - car
@@ -44,6 +43,10 @@ objects:
 
 face_recognition:
   enabled: true
+
+classification:
+  bird:
+    enabled: true
 
 #birdseye:
 #  mode: objects
@@ -312,7 +315,6 @@ cameras:
     objects:
       track:
         - person
-        - face
         - dog
         - cat
         - bicycle
