@@ -29,10 +29,10 @@ spec:
               PAPERLESS_TASK_WORKERS: 2
               PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
               PAPERLESS_PORT: 8000
-              PAPERLESS_CONSUMPTION_DIR: /data/consume
-              PAPERLESS_DATA_DIR: /docs/paperless/data
-              PAPERLESS_EXPORT_DIR: /data/export
-              PAPERLESS_MEDIA_ROOT: /docs/paperless/media
+              PAPERLESS_CONSUMPTION_DIR: /data/nas/consume
+              PAPERLESS_DATA_DIR: /data/local/data
+              PAPERLESS_EXPORT_DIR: /data/nas/export
+              PAPERLESS_MEDIA_ROOT: /docs/local/media
               PAPERLESS_CONSUMER_POLLING: 60
               PAPERLESS_CONSUMER_RECURSIVE: true
               PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS: true
@@ -43,8 +43,8 @@ spec:
               PAPERLESS_DBNAME: paperless
               # sso
               PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
-              PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: 'false'
-              PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: 'true'
+              PAPERLESS_ACCOUNT_ALLOW_SIGNUPS: "false"
+              PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "true"
               #PAPERLESS_DISABLE_REGULAR_LOGIN: 'true'
               PAPERLESS_OCR_USER_ARGS: '{"invalidate_digital_signatures": true}'
               # database
@@ -97,10 +97,10 @@ spec:
       data:
         existingClaim: *app
         globalMounts:
-          - path: /data
+          - path: /data/local
       nas:
         type: nfs
         server: prox.${SECRET_DOMAIN}
-        path: /saspool1/docs
+        path: /saspool1/docs/paperless
         globalMounts:
-          - path: /docs
+          - path: /data/nas
