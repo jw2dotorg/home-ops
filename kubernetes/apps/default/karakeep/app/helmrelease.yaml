@@ -155,7 +155,7 @@ spec:
       data:
         existingClaim: karakeep-data
         advancedMounts:
-          karakeep:
+          main:
             main:
               - path: /data
                 subPath: karakeep
@@ -166,6 +166,7 @@ spec:
 
     ingress:
       main:
+        enabled: true
         className: internal
         hosts:
           - host: &host karakeep.${SECRET_DOMAIN}
