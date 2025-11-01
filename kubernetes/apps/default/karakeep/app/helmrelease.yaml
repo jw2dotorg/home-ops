@@ -27,12 +27,11 @@ spec:
         runAsUser: 1000
 
     controllers:
-      karakeep:
-        forceRename: karakeep
+      main:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app:
+          main:
             image:
               repository: ghcr.io/karakeep-app/karakeep
               tag: 0.27.1@sha256:abd7d6b11b1b8fa3593d1971f886a74850ba8d6a99291218b150207d5a60378e
@@ -72,7 +71,7 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
         containers:
-          app:
+          main:
             image:
               repository: gcr.io/zenika-hub/alpine-chrome
               tag: 124@sha256:1a0046448e0bb6c275c88f86e01faf0de62b02ec8572901256ada0a8c08be23f
@@ -115,7 +114,7 @@ spec:
                           - karakeep
                   topologyKey: kubernetes.io/hostname
         containers:
-          app:
+          main:
             image:
               repository: docker.io/getmeili/meilisearch
               tag: v1.24.0@sha256:d991eb07331e9d1f9cec7bc0f9523fd5d51aee3b223d997e0e66206361952056
@@ -157,11 +156,11 @@ spec:
         existingClaim: karakeep-data
         advancedMounts:
           karakeep:
-            app:
+            main:
               - path: /data
                 subPath: karakeep
           meilisearch:
-            app:
+            main:
               - path: /meili_data
                 subPath: meilisearch
 
