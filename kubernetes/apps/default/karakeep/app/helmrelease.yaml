@@ -136,10 +136,8 @@ spec:
                 memory: 4Gi
 
     service:
-      app:
-        forceRename: karakeep
-        primary: true
-        controller: karakeep
+      main:
+        controller: main
         ports:
           http:
             port: &httpPort 3000
