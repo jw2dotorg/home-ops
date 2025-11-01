@@ -10,3 +10,4 @@ resources:
   - ./gitea/ks.yaml
   - ./wishlist/ks.yaml
   - ./paperless/ks.yaml
+  - ./karakeep/ks.yaml
