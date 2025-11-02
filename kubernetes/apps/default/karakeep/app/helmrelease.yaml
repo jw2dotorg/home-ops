@@ -111,7 +111,7 @@ spec:
                       - key: app.kubernetes.io/controller
                         operator: In
                         values:
-                          - karakeep
+                          - main
                   topologyKey: kubernetes.io/hostname
         containers:
           main:
