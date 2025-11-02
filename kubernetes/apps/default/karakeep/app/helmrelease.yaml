@@ -56,6 +56,9 @@ spec:
               NEXTAUTH_URL: https://karakeep.${SECRET_DOMAIN}
               DISABLE_NEW_RELEASE_CHECK: true
               COREPACK_INTEGRITY_KEYS: 0
+            envFrom:
+              - secretRef:
+                  name: karakeep
             probes:
               liveness:
                 enabled: true
