@@ -1,6 +1,8 @@
 logger:
   default: info
-  #logs:
+  logs:
+    frigate.data_processing.real_time.face: debug
+    frigate.embeddings.maintainer: debug
     #frigate.record.maintainer: debug # temp debug
 
 auth:
@@ -315,7 +317,6 @@ cameras:
     objects:
       track:
         - person
-        - face
         - dog
         - cat
         - bicycle
