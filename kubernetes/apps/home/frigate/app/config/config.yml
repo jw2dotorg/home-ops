@@ -45,6 +45,8 @@ objects:
 
 face_recognition:
   enabled: true
+  model_size: small
+  min_area: 500
 
 classification:
   bird:
