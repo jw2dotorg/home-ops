@@ -315,6 +315,7 @@ cameras:
     objects:
       track:
         - person
+        - face
         - dog
         - cat
         - bicycle
@@ -338,4 +339,3 @@ cameras:
         # - path: rtsp://127.0.0.1:8554/doorbell-amcrest
         #  roles:
         #    - record
-
