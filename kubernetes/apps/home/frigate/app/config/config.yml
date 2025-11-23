@@ -185,6 +185,16 @@ cameras:
           roles: ["detect"]
         - path: rtsp://127.0.0.1:8554/driveway
           roles: ["record"]
+    zones:
+      neighbors_driveway:
+        coordinates: 0.005,0.599,0.007,0.006,0.383,0.006
+        objects:  # everything but cars
+          - person
+          - dog
+          - cat
+          - bicycle
+      my_driveway:
+        coordinates: 0.002,0.626,0.392,0.015,0.997,0.015,0.99,0.994,0.005,0.984
     motion:
       mask:
         - 0.685,0.036,0.686,0.09,0.962,0.09,0.961,0.035 # clock
