@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: zefhemel/silverbullet
-              tag: 2.2.1
+              tag: 2.3.0
             env:
               TZ: ${TIMEZONE}
             resources:
