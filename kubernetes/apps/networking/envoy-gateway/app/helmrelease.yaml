@@ -1,0 +1,22 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: &app envoy-gateway
+spec:
+  chartRef:
+    kind: OCIRepository
+    name: envoy-gateway
+  interval: 1h
+  values:
+    config:
+      envoyGateway:
+        provider:
+          type: Kubernetes
+          kubernetes:
+            deploy:
+              type: GatewayNamespace
+    global:
+      images:
+        envoyGateway:
+          image: mirror.gcr.io/envoyproxy/gateway-dev:latest@sha256:a26ae3487bf571c340e235bf25af41185c2fa49377c69f906ee1234545ed910c
