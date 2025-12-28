@@ -62,10 +62,11 @@ spec:
     service:
       main:
         controller: main
-        type: LoadBalancer
-        annotations:
-          lbipam.cilium.io/ips: ${SVC_MOSQUITTO_ADDR}
-        externalTrafficPolicy: local
+        type: ClusterIP
+        #type: LoadBalancer # not sure if I need this
+        #annotations:
+        #  lbipam.cilium.io/ips: ${SVC_MOSQUITTO_ADDR}
+        #externalTrafficPolicy: local
         ports:
           http:
             port: 1883
