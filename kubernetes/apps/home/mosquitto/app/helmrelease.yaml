@@ -65,7 +65,6 @@ spec:
         type: LoadBalancer
         annotations:
           lbipam.cilium.io/ips: ${SVC_MOSQUITTO_ADDR}
-        externalTrafficPolicy: Local
         ports:
           http:
             port: 1883
