@@ -4,14 +4,9 @@ kind: Cluster
 metadata:
   name: postgres16
 spec:
-  podSecurityContext:
-    runAsUser: 999
-    runasGroup: 999
-
   instances: 3
   #imageName: ghcr.io/cloudnative-pg/postgresql:16.2-6
-  #imageName: tensorchord/cloudnative-pgvecto-rs:16-v0.2.1
-  imageName: ghcr.io/immich-app/postgres:16-vectorchord0.4.1-pgvectors0.3.0
+  imageName: tensorchord/cloudnative-pgvecto-rs:16-v0.2.1
   primaryUpdateStrategy: unsupervised
   storage:
     size: 50Gi
@@ -20,17 +15,12 @@ spec:
   enableSuperuserAccess: true
 
   postgresql:
-    pg_hba:
-      - local all all trust
-      - host all all all md5
     shared_preload_libraries:
       - "vectors.so"
-      - "vchord.so"
     parameters:
       max_connections: "400"
       shared_buffers: 256MB
       search_path: '"$user", public, vectors'
-
 
   bootstrap:
 
