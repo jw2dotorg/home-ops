@@ -38,7 +38,7 @@ spec:
           main:
             image:
               repository: ghcr.io/blakeblackshear/frigate
-              tag: 0.16.3
+              tag: 0.16.4
             env:
               TZ: America/New_York
               LIBVA_DRIVER_NAME: iHD
