@@ -19,6 +19,8 @@ spec:
     pg_hba:
       - local all all trust
       - host all all all md5
+      # allow the new cluster to clone data
+      - host replication all all md5
     shared_preload_libraries:
       - "vectors.so"
     parameters:
