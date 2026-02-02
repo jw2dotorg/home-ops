@@ -1,0 +1,43 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres16-vectorchord
+spec:
+  instances: 1
+  imageName: ghcr.io/immich-app/postgres:16-vectorchord0.4.1-pgvectors0.3.0
+  primaryUpdateStrategy: unsupervised
+  storage:
+    size: 20Gi
+  superuserSecret:
+    name: postgres-superuser
+  enableSuperuserAccess: true
+
+  postgresUID: 999
+  postgresGID: 999
+
+  postgresql:
+    pg_hba:
+      - local all all trust
+      - host all all all md5
+    shared_preload_libraries:
+      - "vectors.so"
+      - "vchord.so"
+    parameters:
+      max_connections: "400"
+      shared_buffers: 256MB
+      search_path: '"$user", public, vectors'
+
+  bootstrap:
+    pg_basebackup:
+      source: postgres16
+
+  externalClusters:
+    - name: postgres16
+      connectionParameters:
+        host: postgres16-ro
+        user: postgres
+        dbname: postgres
+      password:
+        name: postgres-superuser
+        key: password
