@@ -28,6 +28,14 @@ spec:
       shared_buffers: 256MB
       search_path: '"$user", public, vectors'
 
+  plugins:
+    - enabled: true
+      isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: minio
+        serverName: postgres16-vectorchord
+
   bootstrap:
     pg_basebackup:
       source: postgres16
