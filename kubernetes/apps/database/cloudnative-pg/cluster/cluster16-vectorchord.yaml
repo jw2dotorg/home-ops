@@ -28,13 +28,24 @@ spec:
       shared_buffers: 256MB
       search_path: '"$user", public, vectors'
 
-  plugins:
-    - enabled: true
-      isWALArchiver: true
-      name: barman-cloud.cloudnative-pg.io
-      parameters:
-        barmanObjectName: minio
-        serverName: postgres16-vectorchord
+  backup:
+    retentionPolicy: 14d
+    barmanObjectStore:
+      data:
+        compression: bzip2
+      wal:
+        compression: bzip2
+        maxParallel: 8
+      destinationPath: s3://cloudnative-pg/
+      endpointURL: https://s3.jw2.org
+      serverName: postgres16-vectorchord
+      s3Credentials:
+        accessKeyId:
+          name: minio-pgsql
+          key: minio_s3_access_key
+        secretAccessKey:
+          name: minio-pgsql
+          key: minio_s3_secret_access_key
 
   bootstrap:
     pg_basebackup:
