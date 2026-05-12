@@ -30,7 +30,7 @@ spec:
             nameOverride: *app
             image:
               repository: ghcr.io/home-operations/qbittorrent
-              tag: 5.1.4@sha256:25fc7caf22101f85276ede9b1f76a46b7a93971bb6b70b6c58d14d6ab7f51415
+              tag: 5.2.0@sha256:788796013c3da75f2dba568c5319975a5c41f555586dfd13987be4631181e00e
             env:
               TZ: America/New_York
               QBT_WEBUI_PORT: &port 80
